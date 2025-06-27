@@ -1,0 +1,27 @@
+@media (min-width: 400px) {
+    .box {
+        width: calc(100vw / 23.5);
+        height: calc(100vw / 23.5);
+    }
+}
+
+@media (min-width: 576px) {
+
+    .box {
+        width: calc(100vw / 22.5);
+        height: calc(100vw / 22.5);
+    }
+}
+
+@media (min-width: 768px) {}
+
+@media (min-width: 992px) {
+    .box {
+        width: calc(100vw / 21.5);
+        height: calc(100vw / 21.5);
+    }
+}
+
+@media (min-width: 1200px) {}
+
+@media (min-width: 1400px) {}
