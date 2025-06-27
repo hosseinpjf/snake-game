@@ -64,7 +64,14 @@ body {
     border-radius: 10px;
     cursor: pointer;
     border: none;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
+
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
 }
 
 .btn:active {
