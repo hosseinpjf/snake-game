@@ -1,3 +1,10 @@
+:root {
+    --textColor: #000000;
+    --colorBall: green;
+    --colorTail: #ccc;
+    --colorHead: #929292;
+}
+
 * {
     font-family: Arial;
 }
@@ -6,52 +13,144 @@ body {
     background-color: #505050;
 }
 
-#parentBox {
+.container {
+    display: flex;
+    flex-direction: column;
+    column-gap: 10px;
+    padding-top: 10px;
+}
+
+.sidebar {
     border: 2px solid white;
-    padding: 5px;
+    width: 100%;
+    order: 2;
+}
+
+.score {
+    border-bottom: 1px solid #aeaeae;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.score h2 {
+    line-height: 16px;
+    color: var(--textColor);
+}
+
+.score h2 span {
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--textColor);
+}
+
+/* form */
+
+.settings {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 30px;
+    color: var(--textColor);
+    border-bottom: 1px solid #aeaeae;
+    padding: 20px 0;
+    cursor: pointer;
+}
+
+.settings i:nth-of-type(odd){
+    transition: transform 1s;
+}
+
+.settingsRotateClick{
+    transform: rotate(180deg);
+}
+
+.parentBoxesSettings {
+    border-bottom: 1px solid #aeaeae;
+    padding-bottom: 20px;
+    overflow: hidden;
+    height: 452px;
+    transition: all 1s;
+}
+
+.settingsHeightClick {
+    height: 0 !important;
+    padding-bottom: 0 !important;
+    border-bottom: none !important;
+}
+
+.parentChooseColor {
     display: grid;
-    grid-template-columns: repeat(20, 1fr);
-    /* width: 100%; */
-    /* height: calc(100vw / 20); */
-    margin: 30px auto 0 auto;
+    grid-template-columns: 1fr 1fr;
+    padding: 20px 2px;
+    justify-items: center;
 }
 
-.box {
-    width: calc(100vw / 25.5);
-    height: calc(100vw / 25.5);
-    /* border: 1px solid black; */
+.boxChooseColor {
+    padding: 10px;
     display: grid;
-    place-items: center;
+    row-gap: 10px;
 }
 
-.ball {
-    border-radius: 50%;
-    background-color: green;
-    width: 80%;
-    height: 80%;
-    transition: all .7s;
+.boxChooseColor label {
+    color: var(--textColor);
 }
 
-.tail {
-    width: 110%;
-    height: 110%;
-    background-color: #ccc;
-    transition: all .2s;
-    border-radius: 50%;
+.chooseColor {
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
 }
 
-.head {
-    width: 120%;
-    height: 120%;
-    background-color: #929292;
-    border-radius: 50%;
-    z-index: 1;
+.chooseColor input[type=color] {
+    padding: 0 20px;
+    margin-right: 3px;
+    width: 90px;
+    height: 25px;
+    background-color: #969696;
+    cursor: pointer;
+}
+
+.chooseColor input[type=button] {
+    width: 90px;
+    height: 25px;
+    background-color: #969696;
+    color: var(--textColor);
+    cursor: pointer;
+}
+
+.boxChooseBoard {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    color: var(--textColor);
+}
+
+.boxChooseBoard input[type=checkbox] {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.boxChooseBoard label{
+    cursor: pointer;
+}
+
+/* buttons */
+
+.containerBtn {
+    /* height: 250px; */
+    padding: 65px;
+    display: grid;
+    place-content: center;
 }
 
 #parentBtn {
-    display: flex;
-    justify-content: center;
-    padding: 10px;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    /* border: 1px solid beige; */
+    /* margin: 30px auto; */
 }
 
 .btn {
@@ -64,6 +163,8 @@ body {
     border-radius: 10px;
     cursor: pointer;
     border: none;
+    position: absolute;
+    transform: translate(-50%, -50%);
 
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -74,6 +175,79 @@ body {
     -webkit-touch-callout: none;
 }
 
+#rightBtn {
+    top: 50%;
+    left: 100%;
+}
+
+#leftBtn {
+    top: 50%;
+    left: 0%;
+}
+
+#topBtn {
+    top: 0%;
+    left: 50%;
+}
+
+#bottomBtn {
+    top: 100%;
+    left: 50%;
+}
+
 .btn:active {
-    transform: scale(.95);
+    transform: translate(-50%, -50%) scale(.95);
+}
+
+/* boxes */
+
+.containerBoxs {
+    margin: 0 auto;
+    width: 100%;
+    order: 1;
+}
+
+#parentBox {
+    border: 2px solid white;
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    padding: 10px;
+    /* width: 100%; */
+    /* height: calc(100vw / 20); */
+}
+
+.box {
+    width: calc(100vw / 25.5);
+    height: calc(100vw / 25.5);
+    border: none;
+    display: grid;
+    place-items: center;
+}
+
+.boxBorderClick{
+    border: 1px solid black;
+}
+
+.ball {
+    border-radius: 50%;
+    background-color:var(--colorBall);
+    width: 80%;
+    height: 80%;
+    transition: all .7s;
+}
+
+.tail {
+    width: 110%;
+    height: 110%;
+    background-color: var(--colorTail);
+    transition: all .2s;
+    border-radius: 50%;
+}
+
+.head {
+    width: 120%;
+    height: 120%;
+    background-color: var(--colorHead);
+    border-radius: 50%;
+    z-index: 1;
 }

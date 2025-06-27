@@ -1,27 +1,71 @@
 @media (min-width: 400px) {
     .box {
-        width: calc(100vw / 23.5);
-        height: calc(100vw / 23.5);
+        width: calc(100vw / 24);
+        height: calc(100vw / 24);
     }
 }
 
 @media (min-width: 576px) {
 
     .box {
-        width: calc(100vw / 22.5);
-        height: calc(100vw / 22.5);
+        width: calc(100vw / 23.5);
+        height: calc(100vw / 23.5);
     }
 }
 
 @media (min-width: 768px) {}
 
 @media (min-width: 992px) {
+    /* .box {
+        width: calc(100vw / 31.5);
+        height: calc(100vw / 31.5);
+    } */
+
+}
+
+@media (min-width: 1200px) {
+
     .box {
-        width: calc(100vw / 21.5);
-        height: calc(100vw / 21.5);
+        width: calc(100vw / 31.5);
+        height: calc(100vw / 31.5);
+    }
+
+    .parentChooseColor {
+        grid-template-columns: 1fr;
+    }
+
+    .parentBoxesSettings {
+        height: 758px;
+    }
+
+    .container {
+        flex-direction: row;
+    }
+
+    .sidebar {
+        order: 1;
+    }
+
+    .containerBoxs {
+        order: 2;
     }
 }
 
-@media (min-width: 1200px) {}
+@media (min-width: 1400px) {
+    .sidebar {
+        width: 30%;
+    }
 
-@media (min-width: 1400px) {}
+    .containerBoxs {
+        width: 70%;
+        margin: 0;
+    }
+
+    .parentChooseColor {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .parentBoxesSettings {
+        height: 470px;
+    }
+}
