@@ -31,7 +31,15 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 //////////////////////////////////////////////////////////////////////////// size parentBox
 
-if (window.screen.orientation.type.startsWith("landscape")) {
+function debounce(fn, delay) {
+    let timer;
+    return function (...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => fn.apply(this, args), delay);
+    };
+}
+
+const handleResize = () => {
 
     let heightWindo = window.innerHeight;
     let widthParentBox = parentBox.getBoundingClientRect().width;
@@ -42,7 +50,10 @@ if (window.screen.orientation.type.startsWith("landscape")) {
         parentBox.style.height = heightWindo + 'px';
         parentBox.style.width = (heightWindo * 2) + 'px';
     }
-}
+};
+
+window.addEventListener("DOMContentLoaded", handleResize);
+window.addEventListener("resize", debounce(handleResize, 200));
 
 //////////////////////////////////////////////////////////////////////////// buttons
 
@@ -343,7 +354,8 @@ class PositionColorTextColor {
 let TextColorShow = new PositionColorTextColor();
 parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(5) input[type=button]').addEventListener('click', TextColorShow.show.bind(TextColorShow));
 
-const buttonsBringSettings = Array.from(document.querySelectorAll('#btnShowSettings, .closeBox button'));
+
+const buttonsBringSettings = Array.from(document.querySelectorAll('#btnShowSettings, .closeBox button, #btnFullScreen'));
 class PositionColorButtonColorBringSettings {
     constructor(colorLocal) {
         this.colorLocal = colorLocal;
@@ -597,3 +609,41 @@ document.getElementById('btnShowSettings').addEventListener('click', () => {
 document.querySelector('.closeBox button').addEventListener('click', () => {
     boxShowSettings.classList.remove('thisBoxShow');
 });
+
+//////////////////////////////////////////////////////////////////////////// full Screen
+
+const btnFullScreen = document.getElementById('btnFullScreen');
+
+btnFullScreen.addEventListener('click', () => {
+
+    if (btnFullScreen.children[0].classList.contains('fa-expand') === true) {
+        btnFullScreen.children[0].classList.replace('fa-expand', 'fa-compress');
+    }
+    else {
+        btnFullScreen.children[0].classList.replace('fa-compress', 'fa-expand');
+    };
+
+    if (!document.fullscreenElement) {
+        if (document.documentElement.requestFullscreen) {
+            document.documentElement.requestFullscreen();
+        }
+        else if (document.documentElement.mozRequestFullscreen) {
+            document.documentElement.mozRequestFullscreen();
+        }
+        else if (document.documentElement.webkitRequestFullscreen) {
+            document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+        }
+    }
+    else {
+        if (document.cancelFullScreen) {
+            document.cancelFullScreen();
+        }
+        else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        }
+        else if (document.webkitCancelFullScreen) {
+            document.webkitCancelFullScreen();
+        }
+    }
+
+})
