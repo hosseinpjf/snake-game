@@ -536,3 +536,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 })
+
+//////////////////////////////////////////////////////////////////////////// showBoxes
+
+
+document.getElementById('btnShowSettings').addEventListener('click', () => {
+    document.getElementById('boxShowSettings').classList.add('thisBoxShow');
+})
+
+document.querySelector('.closeBox button').addEventListener('click', () => {
+    document.getElementById('boxShowSettings').classList.remove('thisBoxShow');
+})
