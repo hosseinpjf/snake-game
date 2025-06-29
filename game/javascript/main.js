@@ -30,6 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 })
 
+//////////////////////////////////////////////////////////////////////////// buttons
+
 let intervalId;
 
 const leftBtn = document.getElementById('leftBtn');
@@ -108,6 +110,7 @@ function stopActionBottom() {
     clearInterval(intervalId);
 };
 
+//////////////////////////////////////////////////////////////////////////// addEventListener buttons
 
 let marhale = [], eaten = 0;
 
@@ -181,6 +184,8 @@ function move(m) {
     }
 }
 
+//////////////////////////////////////////////////////////////////////////// works functions
+
 function createTail(n) {
     marhale.forEach(number => {
         boxes[number].children[0].classList.add('tail');
@@ -222,7 +227,7 @@ function lose(n) {
     }, 2000);
 }
 
-//////////////////////////////////////localStorage
+//////////////////////////////////////////////////////////////////////////// localStorage
 
 function saveData() {
     if (localStorage.getItem('score') === null) {
@@ -235,7 +240,7 @@ function saveData() {
     }
 }
 
-//////////////////////////////////////settings
+//////////////////////////////////////////////////////////////////////////// settings
 
 const settings = document.getElementsByClassName('settings')[0];
 const parentBoxesSettings = document.getElementsByClassName('parentBoxesSettings')[0];
@@ -462,7 +467,7 @@ checkboxBorder.addEventListener('change', BorderBoxesShow.show.bind(BorderBoxesS
 // parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(10) input[type=button]').addEventListener('click', bloodColorShow.show.bind(bloodColorShow));
 
 
-//////////////////////////////////////localStorage settings
+//////////////////////////////////////////////////////////////////////////// localStorage settings
 
 function settingsLoc(key, value) {
 
@@ -531,32 +536,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// let colors = {
-//     FullScreen: FullScreen(),
-//     GameFrame: GameFrame(),
-//     SidebarFrame: SidebarFrame(),
-//     TextColor: TextColor(),
-//     ButtonColor: ButtonColor(),
-//     ButtonIndicatorColor: ButtonIndicatorColor(),
-//     SnakeBody: SnakeBody(),
-//     SnakeHead: SnakeHead(),
-//     FoodColor: FoodColor(),
-//     bloodColor: bloodColor(),
-//     BorderBoxes: BorderBoxes()
-// }

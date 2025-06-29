@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/media.css">
+    <title>Snake Game</title>
+</head>
+
+<body>
+
+    <section class="container">
+
+        <section class="sidebar">
+
+            <section class="score">
+                <h2>Your highest score: <span></span></h2>
+                <h2>Your current score: <span>1</span></h2>
+            </section>
+
+            <form>
+                <div class="settings">
+                    <i class="fa fa-angle-up settingsRotateClick"></i>
+                    <i class="fa fa-cog"></i>
+                    <i class="fa fa-angle-up settingsRotateClick"></i>
+                </div>
+                <section class="parentBoxesSettings settingsHeightClick">
+                    <section class="parentChooseColor">
+                        <section class="boxChooseColor">
+                            <label for="">Full screen background:</label>
+                            <div class="chooseColor">
+                                <input type="color">
+                                <input type="button" value="Choose">
+                            </div>
+                        </section>
+                        <section class="boxChooseColor">
+                            <label for="">Game frame background:</label>
+                            <div class="chooseColor">
+                                <input type="color">
+                                <input type="button" value="Choose">
+                            </div>
+                        </section>
+                        <section class="boxChooseColor">
+                            <label for="">Sidebar Frame Background:</label>
+                            <div class="chooseColor">
+                                <input type="color">
+                                <input type="button" value="Choose">
+                            </div>
+                        </section>
+                        <section class="boxChooseColor">
+                            <label for="">Text color:</label>
+                            <div class="chooseColor">
+                                <input type="color">
+                                <input type="button" value="Choose">
+                            </div>
+                        </section>
+                        <section class="boxChooseColor">
+                            <label for="">Button color:</label>
+                            <div class="chooseColor">
+                                <input type="color">
+                                <input type="button" value="Choose">
+                            </div>
+                        </section>
+                        <section class="boxChooseColor">
+                            <label for="">Button indicator color:</label>
+                            <div class="chooseColor">
+                                <input type="color">
+                                <input type="button" value="Choose">
+                            </div>
+                        </section>
+                        <section class="boxChooseColor">
+                            <label for="">Snake body color:</label>
+                            <div class="chooseColor">
+                                <input type="color">
+                                <input type="button" value="Choose">
+                            </div>
+                        </section>
+                        <section class="boxChooseColor">
+                            <label for="">Snake head color:</label>
+                            <div class="chooseColor">
+                                <input type="color">
+                                <input type="button" value="Choose">
+                            </div>
+                        </section>
+                        <section class="boxChooseColor">
+                            <label for="">Food color:</label>
+                            <div class="chooseColor">
+                                <input type="color">
+                                <input type="button" value="Choose">
+                            </div>
+                        </section>
+                        <!-- <section class="boxChooseColor">
+                            <label for="">Blood color:</label>
+                            <div class="chooseColor">
+                                <input type="color">
+                                <input type="button" value="Choose">
+                            </div>
+                        </section> -->
+                    </section>
+                    <section class="boxChooseBoard">
+                        <input id="board" type="checkbox">
+                        <label for="board">Do you want the game board to be lined?</label>
+                    </section>
+                </section>
+            </form>
+
+            <section class="containerBtn">
+                <div id="parentBtn">
+                    <button type="button" class="btn" id="leftBtn">
+                        <i class="fa fa-arrow-left"></i>
+                    </button>
+                    <button type="button" class="btn" id="bottomBtn">
+                        <i class="fa fa-arrow-down"></i>
+                    </button>
+                    <button type="button" class="btn" id="topBtn">
+                        <i class="fa fa-arrow-up"></i>
+                    </button>
+                    <button type="button" class="btn" id="rightBtn">
+                        <i class="fa fa-arrow-right"></i>
+                    </button>
+                </div>
+            </section>
+
+        </section>
+
+        <section class="containerBoxs">
+            <section id="parentBox"></section>
+        </section>
+
+        <script src="./javascript/main.js"></script>
+</body>
+
+</html>
