@@ -29,6 +29,20 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.score h1').textContent = 1;
     }
 })
+//////////////////////////////////////////////////////////////////////////// size parentBox
+
+if (window.screen.orientation.type.startsWith("landscape")) {
+
+    let heightWindo = window.innerHeight;
+    let widthParentBox = parentBox.getBoundingClientRect().width;
+
+    parentBox.style.height = (widthParentBox / 2) + 'px';
+
+    if (heightWindo < (widthParentBox / 2)) {
+        parentBox.style.height = heightWindo + 'px';
+        parentBox.style.width = (heightWindo * 2) + 'px';
+    }
+}
 
 //////////////////////////////////////////////////////////////////////////// buttons
 
@@ -242,15 +256,8 @@ function saveData() {
 
 //////////////////////////////////////////////////////////////////////////// settings
 
-const settings = document.getElementsByClassName('settings')[0];
 const parentBoxesSettings = document.getElementsByClassName('parentBoxesSettings')[0];
-
-settings.addEventListener('click', () => {
-    parentBoxesSettings.classList.toggle('settingsHeightClick');
-    settings.children[0].classList.toggle('settingsRotateClick');
-    settings.children[2].classList.toggle('settingsRotateClick');
-})
-
+const boxShowSettings = document.getElementById('boxShowSettings');
 
 const body = document.getElementsByTagName('body')[0];
 class PositionColorFullScreen {
@@ -304,6 +311,21 @@ class PositionColorSidebarFrame {
 let SidebarFrameShow = new PositionColorSidebarFrame();
 parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(3) input[type=button]').addEventListener('click', SidebarFrameShow.show.bind(SidebarFrameShow));
 
+class PositionColorSettingsFrame {
+    constructor(colorLocal) {
+        this.colorLocal = colorLocal;
+    }
+    sendy() {
+        boxShowSettings.style.backgroundColor = this.colorLocal;
+    }
+    show() {
+        let color = parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(4) input[type=color]').value;
+        boxShowSettings.style.backgroundColor = color;
+        settingsLoc('SettingsFrame', color);
+    }
+}
+let SettingsFrameShow = new PositionColorSettingsFrame();
+parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(4) input[type=button]').addEventListener('click', SettingsFrameShow.show.bind(SettingsFrameShow));
 
 class PositionColorTextColor {
     constructor(colorLocal) {
@@ -313,13 +335,34 @@ class PositionColorTextColor {
         document.documentElement.style.setProperty('--textColor', this.colorLocal);
     }
     show() {
-        let color = parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(4) input[type=color]').value;
+        let color = parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(5) input[type=color]').value;
         document.documentElement.style.setProperty('--textColor', color);
         settingsLoc('TextColor', color);
     }
 }
 let TextColorShow = new PositionColorTextColor();
-parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(4) input[type=button]').addEventListener('click', TextColorShow.show.bind(TextColorShow));
+parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(5) input[type=button]').addEventListener('click', TextColorShow.show.bind(TextColorShow));
+
+const buttonsBringSettings = Array.from(document.querySelectorAll('#btnShowSettings, .closeBox button'));
+class PositionColorButtonColorBringSettings {
+    constructor(colorLocal) {
+        this.colorLocal = colorLocal;
+    }
+    sendy() {
+        buttonsBringSettings.forEach(element => {
+            element.style.backgroundColor = this.colorLocal;
+        })
+    }
+    show() {
+        let color = parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(6) input[type=color]').value;
+        buttonsBringSettings.forEach(element => {
+            element.style.backgroundColor = color;
+        })
+        settingsLoc('ButtonColorBringSettings', color);
+    }
+}
+let ButtonColorBringSettingsShow = new PositionColorButtonColorBringSettings();
+parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(6) input[type=button]').addEventListener('click', ButtonColorBringSettingsShow.show.bind(ButtonColorBringSettingsShow));
 
 
 const btns = Array.from(document.getElementsByClassName('btn'));
@@ -333,7 +376,7 @@ class PositionColorButtonColor {
         })
     }
     show() {
-        let color = parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(5) input[type=color]').value;
+        let color = parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(7) input[type=color]').value;
         btns.forEach(element => {
             element.style.backgroundColor = color;
         })
@@ -341,7 +384,7 @@ class PositionColorButtonColor {
     }
 }
 let ButtonColorShow = new PositionColorButtonColor();
-parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(5) input[type=button]').addEventListener('click', ButtonColorShow.show.bind(ButtonColorShow));
+parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(7) input[type=button]').addEventListener('click', ButtonColorShow.show.bind(ButtonColorShow));
 
 
 class PositionColorButtonIndicatorColor {
@@ -354,7 +397,7 @@ class PositionColorButtonIndicatorColor {
         })
     }
     show() {
-        let color = parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(6) input[type=color]').value;
+        let color = parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(8) input[type=color]').value;
         btns.forEach(element => {
             element.style.color = color;
         })
@@ -362,7 +405,7 @@ class PositionColorButtonIndicatorColor {
     }
 }
 let ButtonIndicatorColorShow = new PositionColorButtonIndicatorColor();
-parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(6) input[type=button]').addEventListener('click', ButtonIndicatorColorShow.show.bind(ButtonIndicatorColorShow));
+parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(8) input[type=button]').addEventListener('click', ButtonIndicatorColorShow.show.bind(ButtonIndicatorColorShow));
 
 
 class PositionColorSnakeBody {
@@ -373,13 +416,13 @@ class PositionColorSnakeBody {
         document.documentElement.style.setProperty('--colorTail', this.colorLocal)
     }
     show() {
-        let color = parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(7) input[type=color]').value;
+        let color = parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(9) input[type=color]').value;
         document.documentElement.style.setProperty('--colorTail', color)
         settingsLoc('SnakeBody', color);
     }
 }
 let SnakeBodyShow = new PositionColorSnakeBody();
-parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(7) input[type=button]').addEventListener('click', SnakeBodyShow.show.bind(SnakeBodyShow));
+parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(9) input[type=button]').addEventListener('click', SnakeBodyShow.show.bind(SnakeBodyShow));
 
 
 class PositionColorSnakeHead {
@@ -390,13 +433,13 @@ class PositionColorSnakeHead {
         document.documentElement.style.setProperty('--colorHead', this.colorLocal)
     }
     show() {
-        let color = parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(8) input[type=color]').value;
+        let color = parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(10) input[type=color]').value;
         document.documentElement.style.setProperty('--colorHead', color)
         settingsLoc('SnakeHead', color);
     }
 }
 let SnakeHeadShow = new PositionColorSnakeHead();
-parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(8) input[type=button]').addEventListener('click', SnakeHeadShow.show.bind(SnakeHeadShow));
+parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(10) input[type=button]').addEventListener('click', SnakeHeadShow.show.bind(SnakeHeadShow));
 
 
 class PositionColorFoodColor {
@@ -407,13 +450,13 @@ class PositionColorFoodColor {
         document.documentElement.style.setProperty('--colorBall', this.colorLocal)
     }
     show() {
-        let color = parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(9) input[type=color]').value;
+        let color = parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(11) input[type=color]').value;
         document.documentElement.style.setProperty('--colorBall', color)
         settingsLoc('FoodColor', color);
     }
 }
 let FoodColorShow = new PositionColorFoodColor();
-parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(9) input[type=button]').addEventListener('click', FoodColorShow.show.bind(FoodColorShow));
+parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(11) input[type=button]').addEventListener('click', FoodColorShow.show.bind(FoodColorShow));
 
 
 const checkboxBorder = parentBoxesSettings.querySelector('.boxChooseBoard input[type=checkbox]');
@@ -483,7 +526,7 @@ function settingsLoc(key, value) {
     colors.set(key, value);
 
     localStorage.setItem('personalization', JSON.stringify([...colors]));
-    let getLocal = new Map(JSON.parse(localStorage.getItem('personalization')));
+    // let getLocal = new Map(JSON.parse(localStorage.getItem('personalization')));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -502,9 +545,17 @@ document.addEventListener('DOMContentLoaded', () => {
         let SidebarFrameSendy = new PositionColorSidebarFrame(getLocal.get('SidebarFrame'));
         SidebarFrameSendy.sendy();
     }
+    if (getLocal.get('SettingsFrame')) {
+        let SidebarSettingsFrameSendy = new PositionColorSettingsFrame(getLocal.get('SettingsFrame'));
+        SidebarSettingsFrameSendy.sendy();
+    }
     if (getLocal.get('TextColor')) {
         let TextColorSendy = new PositionColorTextColor(getLocal.get('TextColor'));
         TextColorSendy.sendy();
+    }
+    if (getLocal.get('ButtonColorBringSettings')) {
+        let ButtonColorBringSettingsSendy = new PositionColorButtonColorBringSettings(getLocal.get('ButtonColorBringSettings'));
+        ButtonColorBringSettingsSendy.sendy();
     }
     if (getLocal.get('ButtonColor')) {
         let ButtonColorSendy = new PositionColorButtonColor(getLocal.get('ButtonColor'));
@@ -539,11 +590,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //////////////////////////////////////////////////////////////////////////// showBoxes
 
-
 document.getElementById('btnShowSettings').addEventListener('click', () => {
-    document.getElementById('boxShowSettings').classList.add('thisBoxShow');
-})
+    boxShowSettings.classList.add('thisBoxShow');
+});
 
 document.querySelector('.closeBox button').addEventListener('click', () => {
-    document.getElementById('boxShowSettings').classList.remove('thisBoxShow');
-})
+    boxShowSettings.classList.remove('thisBoxShow');
+});

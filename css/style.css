@@ -14,6 +14,7 @@
 
 body {
     background-color: #505050;
+    position: relative;
     /* overflow: hidden; */
 }
 
@@ -24,8 +25,9 @@ body {
 /* Utility Clasess */
 
 .container {
-    display: grid;
-    grid-template-columns: 15% 85%;
+    /* display: grid; */
+    /* grid-template-columns: 15% 85%; */
+    display: flex;
     /* border: 10px solid; */
     height: 100vh;
     /* flex-direction: column; */
@@ -43,6 +45,8 @@ body {
     padding: 30px 0 80px;
     /* width: 100%; */
     /* order: 2; */
+    width: 15%;
+    min-width: 133px;
 }
 
 /* show Button */
@@ -68,12 +72,18 @@ body {
     font-size: 22px;
 }
 
+#btnShowSettings i{
+    color: var(--textColor);
+}
+
 #boxShowSettings{
-    background-color: #a1b181;
+    background-color: #cacaca;
     width: 250px;
-    height: calc(100vh - 42px);
+    height: calc(100vh - 3px);
+    /* height: 100vh; */
     position: absolute;
-    top: -10px;
+    /* top: -10px; */
+    top: -30px;
     left: 0;
     z-index: 2;
     transform: translateX(-120%);
@@ -86,7 +96,7 @@ body {
 
 .closeBox{
     width: 100%;
-    height: 100px;
+    height: 55px;
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;
@@ -97,13 +107,20 @@ body {
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 5px;
+    /* padding: 5px; */
     font-size: 22px;
+    width: 25px;
+    height: 25px;
+    /* background-color: transparent; */
+}
+
+.closeBox button i{
+    color: var(--textColor);
 }
 
 /* form */
 
-.settings {
+/* .settings {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -112,41 +129,48 @@ body {
     border-bottom: 1px solid #aeaeae;
     padding: 20px 0;
     cursor: pointer;
-}
-
+} */
+/* 
 .settings i:nth-of-type(odd){
     transition: transform 1s;
-}
-
+} */
+/* 
 .settingsRotateClick{
     transform: rotate(180deg);
-}
+} */
 
 .parentBoxesSettings {
-    border-bottom: 1px solid #aeaeae;
+    /* border-bottom: 1px solid #aeaeae; */
+    /* padding-bottom: 20px; */
+    /* overflow: hidden; */
+    /* height: 452px; */
+    /* transition: all 1s; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+    height: calc((100vh - 42px) - 55px);
     padding-bottom: 20px;
-    overflow: hidden;
-    height: 452px;
-    transition: all 1s;
 }
 
-.settingsHeightClick {
+/* .settingsHeightClick {
     height: 0 !important;
     padding-bottom: 0 !important;
     border-bottom: none !important;
-}
+} */
 
-.parentChooseColor {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 20px 2px;
-    justify-items: center;
-}
+/* .parentChooseColor { */
+    /* display: grid; */
+    /* grid-template-columns: 1fr; */
+    /* padding: 20px 2px; */
+    /* justify-items: center; */
+/* } */
 
 .boxChooseColor {
     padding: 10px;
     display: grid;
     row-gap: 10px;
+    max-width: 205px;
 }
 
 .boxChooseColor label {
@@ -179,13 +203,15 @@ body {
 .boxChooseBoard {
     display: flex;
     align-items: center;
-    padding-left: 20px;
+    /* padding-left: 20px; */
+    padding: 10px;
+    max-width: 205px;
     color: var(--textColor);
 }
 
 .boxChooseBoard input[type=checkbox] {
-    width: 18px;
-    height: 18px;
+    width: 30px;
+    height: 30px;
     margin-right: 10px;
     cursor: pointer;
 }
@@ -279,24 +305,33 @@ body {
 
 /* boxes */
 
-.containerBoxes {
+/* .containerBoxes { */
     /* margin: 0 auto; */
     /* width: 100%; */
     /* order: 1; */
-}
+/* } */
 
 #parentBox {
     border: 2px solid white;
+    padding: 10px;
     display: grid;
     grid-template-columns: repeat(20, 1fr);
-    padding: 10px;
+    place-items: center;
+    /* place-content: center; */
     /* width: 100%; */
     /* height: calc(100vw / 20); */
+    /* height: calc(85%); */
+    /* width: 85%; */
+    /* width: 800px; */
+    width: 100%;
+    margin: 0 auto;
 }
 
 .box {
-    width: calc(100vw / 25.5);
-    height: calc(100vw / 25.5);
+    /* width: calc(100vw / 25.5);
+    height: calc(100vw / 25.5); */
+    width: 100%;
+    height: 100%;
     border: none;
     display: grid;
     place-items: center;
@@ -328,4 +363,39 @@ body {
     background-color: var(--colorHead);
     border-radius: 50%;
     z-index: 1;
+}
+
+/* horizontal */
+
+.parentHorizontal{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.horizontal{
+    width: 50%;
+    height: 50%;
+    background-color: rgba(204, 204, 204, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 20px 0;
+    row-gap: 20px;
+    min-width: 280px;
+}
+
+.horizontal h2{
+    text-align: center;
+    font-size: clamp(18px, 5vw, 22px);
 }

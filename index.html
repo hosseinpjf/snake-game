@@ -12,12 +12,18 @@
 
 <body>
 
+    <section class="parentHorizontal">
+        <div class="horizontal">
+            <h2>Please hold your phone horizontally.</h2>
+            <img src="./image/rotate.png" alt="">
+        </div>
+    </section>
+
     <section class="container">
 
         <section class="sidebar">
 
             <section class="parentShow">
-
                 <button id="btnShowSettings" class="activeButton" type="button">
                     <i class="fa fa-cogs"></i>
                 </button>
@@ -27,31 +33,14 @@
                             <i class="fa fa-times"></i>
                         </button>
                     </div>
-                    Settings
-                </div>
-
-                <!-- <button id="btnShowPeople" class="showBtns activeButton" type="button"></button>
-                <div id="boxShowPeople" class="boxShow">
-                    <div class="closeBox">
-                        <button type="button" class="activeButton"></button>
-                    </div>
-                    People
-                </div> -->
-            </section>
-
-            <section class="score">
-                <h2>Your highest score: <span>1</span></h2>
-                <h2>Your current score: <span>1</span></h2>
-            </section>
-
-            <form style="display: none;">
-                <div class="settings">
-                    <i class="fa fa-angle-up settingsRotateClick"></i>
-                    <i class="fa fa-cog"></i>
-                    <i class="fa fa-angle-up settingsRotateClick"></i>
-                </div>
-                <section class="parentBoxesSettings settingsHeightClick">
-                    <section class="parentChooseColor">
+                    <form class="parentBoxesSettings">
+                        <!-- <div class="settings">
+                            <i class="fa fa-angle-up settingsRotateClick"></i>
+                            <i class="fa fa-cog"></i>
+                            <i class="fa fa-angle-up settingsRotateClick"></i>
+                        </div> -->
+                        <!-- <section > -->
+                        <!-- <section class="parentChooseColor"> -->
                         <section class="boxChooseColor">
                             <label for="">Full screen background:</label>
                             <div class="chooseColor">
@@ -67,7 +56,14 @@
                             </div>
                         </section>
                         <section class="boxChooseColor">
-                            <label for="">Sidebar Frame Background:</label>
+                            <label for="">Sidebar frame Background:</label>
+                            <div class="chooseColor">
+                                <input type="color">
+                                <input type="button" value="Choose">
+                            </div>
+                        </section>
+                        <section class="boxChooseColor">
+                            <label for="">Settings frame background:</label>
                             <div class="chooseColor">
                                 <input type="color">
                                 <input type="button" value="Choose">
@@ -75,6 +71,13 @@
                         </section>
                         <section class="boxChooseColor">
                             <label for="">Text color:</label>
+                            <div class="chooseColor">
+                                <input type="color">
+                                <input type="button" value="Choose">
+                            </div>
+                        </section>
+                        <section class="boxChooseColor">
+                            <label for="">Button color bring settings:</label>
                             <div class="chooseColor">
                                 <input type="color">
                                 <input type="button" value="Choose">
@@ -115,20 +118,28 @@
                                 <input type="button" value="Choose">
                             </div>
                         </section>
+
                         <!-- <section class="boxChooseColor">
-                            <label for="">Blood color:</label>
-                            <div class="chooseColor">
-                                <input type="color">
-                                <input type="button" value="Choose">
-                            </div>
-                        </section> -->
-                    </section>
-                    <section class="boxChooseBoard">
-                        <input id="board" type="checkbox">
-                        <label for="board">Do you want the game board to be lined?</label>
-                    </section>
-                </section>
-            </form>
+                                    <label for="">Blood color:</label>
+                                    <div class="chooseColor">
+                                        <input type="color">
+                                        <input type="button" value="Choose">
+                                    </div>
+                                </section> -->
+                        <!-- </section> -->
+                        <section class="boxChooseBoard">
+                            <input id="board" type="checkbox">
+                            <label for="board">Do you want the game board to be lined?</label>
+                        </section>
+                        <!-- </section> -->
+                    </form>
+                </div>
+            </section>
+
+            <section class="score">
+                <h2>highest score: <span>1</span></h2>
+                <h2>current score: <span>1</span></h2>
+            </section>
 
             <section class="containerBtn">
                 <div id="parentBtn">
