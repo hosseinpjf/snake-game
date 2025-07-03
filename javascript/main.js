@@ -784,17 +784,9 @@ document.querySelector('.closeBox button').addEventListener('click', () => {
 //////////////////////////////////////////////////////////////////////////// full Screen
 
 const btnFullScreen = document.getElementById('btnFullScreen');
-let checkFullScrren = false;
 
 btnFullScreen.addEventListener('click', () => {
     screenFull();
-    if (checkFullScrren == false) {
-        checkFullScrren = true
-    }
-    else {
-        checkFullScrren = false;
-    }
-    locFullScreen(checkFullScrren);
 })
 
 function screenFull() {
@@ -829,13 +821,4 @@ function screenFull() {
     }
 }
 
-function locFullScreen(checkFullScrrenValue) {
-    localStorage.setItem('fullScreen', checkFullScrrenValue);
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    
-    if(JSON.parse(localStorage.getItem('fullScreen')) == true){
-        screenFull();
-    }
-})
+localStorage.removeItem('fullScreen');
