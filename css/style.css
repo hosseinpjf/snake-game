@@ -15,7 +15,8 @@
 body {
     background-color: #505050;
     position: relative;
-    /* overflow: hidden; */
+    height: 100vh;
+    overflow: hidden;
 }
 
 /* Utility Clasess */
@@ -26,14 +27,8 @@ body {
 /* Utility Clasess */
 
 .container {
-    /* display: grid; */
-    /* grid-template-columns: 15% 85%; */
     display: flex;
-    /* border: 10px solid; */
     height: 100vh;
-    /* flex-direction: column; */
-    /* column-gap: 10px; */
-    /* padding-top: 10px; */
 }
 
 /* sidebar */
@@ -44,8 +39,6 @@ body {
     flex-direction: column;
     justify-content: space-between;
     padding: 30px 0 80px;
-    /* width: 100%; */
-    /* order: 2; */
     width: 15%;
     min-width: 133px;
 }
@@ -54,19 +47,15 @@ body {
 
 .parentShow {
     width: 100%;
-    /* height: 30px; */
     padding: 0 10px;
-    /* margin-top: 20px; */
     display: flex;
     align-items: center;
     column-gap: 10px;
     position: relative;
-    /* z-index: 5; */
 }
 
 .parentShow>button {
     width: 100%;
-    /* height: 100%; */
     padding: 10px;
     border: none;
     outline: none;
@@ -82,9 +71,7 @@ body {
     background-color: #cacaca;
     width: 250px;
     height: calc(100vh - 40px);
-    /* height: 100vh; */
     position: absolute;
-    /* top: -10px; */
     top: -10px;
     left: 0;
     z-index: 5;
@@ -109,11 +96,9 @@ body {
     border: none;
     outline: none;
     cursor: pointer;
-    /* padding: 5px; */
     font-size: 22px;
     width: 25px;
     height: 25px;
-    /* background-color: transparent; */
 }
 
 .closeBox button i {
@@ -122,31 +107,7 @@ body {
 
 /* form */
 
-/* .settings {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    font-size: 30px;
-    color: var(--textColor);
-    border-bottom: 1px solid #aeaeae;
-    padding: 20px 0;
-    cursor: pointer;
-} */
-/* 
-.settings i:nth-of-type(odd){
-    transition: transform 1s;
-} */
-/* 
-.settingsRotateClick{
-    transform: rotate(180deg);
-} */
-
 .parentBoxesSettings {
-    /* border-bottom: 1px solid #aeaeae; */
-    /* padding-bottom: 20px; */
-    /* overflow: hidden; */
-    /* height: 452px; */
-    /* transition: all 1s; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -154,19 +115,6 @@ body {
     height: calc((100vh - 42px) - 55px);
     padding-bottom: 20px;
 }
-
-/* .settingsHeightClick {
-    height: 0 !important;
-    padding-bottom: 0 !important;
-    border-bottom: none !important;
-} */
-
-/* .parentChooseColor { */
-/* display: grid; */
-/* grid-template-columns: 1fr; */
-/* padding: 20px 2px; */
-/* justify-items: center; */
-/* } */
 
 .boxChooseColor {
     padding: 10px;
@@ -207,7 +155,6 @@ body {
 .boxChooseBoard {
     display: flex;
     align-items: center;
-    /* padding-left: 20px; */
     padding: 10px;
     max-width: 205px;
     color: var(--textColor);
@@ -247,7 +194,6 @@ body {
 /* score */
 
 .score {
-    /* border-bottom: 1px solid #aeaeae; */
     padding: 0 10px;
     text-align: center;
 }
@@ -266,9 +212,6 @@ body {
 /* buttons */
 
 .containerBtn {
-    /* height: 250px; */
-    /* padding: 65px; */
-    /* height: 200px; */
     width: 100%;
     display: grid;
     place-content: center;
@@ -278,8 +221,6 @@ body {
     width: 80px;
     height: 80px;
     position: relative;
-    /* border: 1px solid red; */
-    /* margin: 30px auto; */
 }
 
 .btn {
@@ -329,31 +270,17 @@ body {
 
 /* boxes */
 
-/* .containerBoxes { */
-/* margin: 0 auto; */
-/* width: 100%; */
-/* order: 1; */
-/* } */
-
 #parentBox {
     border: 2px solid white;
     padding: 10px;
     display: grid;
     grid-template-columns: repeat(20, 1fr);
     place-items: center;
-    /* place-content: center; */
-    /* width: 100%; */
-    /* height: calc(100vw / 20); */
-    /* height: calc(85%); */
-    /* width: 85%; */
-    /* width: 800px; */
     width: 100%;
     margin: 0 auto;
 }
 
 .box {
-    /* width: calc(100vw / 25.5);
-    height: calc(100vw / 25.5); */
     width: 100%;
     height: 100%;
     border: none;
