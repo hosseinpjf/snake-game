@@ -2,8 +2,8 @@ const parentBox = document.getElementById('parentBox');
 const scores = document.querySelectorAll('.score h2 span');
 let boxes = [];
 
-document.addEventListener('DOMContentLoaded', () => {
 
+function startGame() {
     for (let t = 0; t < 200; t++) {
         if (t === 65) {
             let eleman = document.createElement('div');
@@ -28,6 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
     else {
         document.querySelector('.score h1').textContent = 1;
     }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    startGame();
 })
 //////////////////////////////////////////////////////////////////////////// size parentBox
 
@@ -136,13 +140,62 @@ function stopActionBottom() {
 };
 
 //////////////////////////////////////////////////////////////////////////// addEventListener buttons
-
+let loseOrNot = true;
 function move(m) {
+    if (loseOrNot) {
+        for (let n = 0; n < boxes.length; n++) {
 
-    for (let n = 0; n < boxes.length; n++) {
+            if (m === -1) {
+                if (n % 20 !== 0) {
+                    if (boxes[n + m]) {
+                        if (boxes[n].children[0].classList.contains('head') == true) {
+                            boxes[n].children[0].classList.remove('head');
+                            boxes[n + m].children[0].classList.add('head');
 
-        if (m === -1) {
-            if (n % 20 !== 0) {
+                            tanzim(n);
+
+                            break;
+                        }
+                    }
+                }
+                else if (n % 20 === 0) {
+                    if (boxes[n].children[0].classList.contains('head') == true) {
+                        boxes[n].children[0].classList.remove('head');
+                        boxes[n + 19].children[0].classList.add('head');
+
+                        tanzim(n);
+
+                        break;
+                    }
+                }
+            }
+
+            if (m === 1) {
+                if ((n + 1) % 20 !== 0) {
+                    if (boxes[n + m]) {
+                        if (boxes[n].children[0].classList.contains('head') == true) {
+                            boxes[n].children[0].classList.remove('head');
+                            boxes[n + m].children[0].classList.add('head');
+
+                            tanzim(n);
+
+                            break;
+                        }
+                    }
+                }
+                else if ((n + 1) % 20 === 0) {
+                    if (boxes[n].children[0].classList.contains('head') == true) {
+                        boxes[n].children[0].classList.remove('head');
+                        boxes[n - 19].children[0].classList.add('head');
+
+                        tanzim(n);
+
+                        break;
+                    }
+                }
+            }
+
+            if (m === -20) {
                 if (boxes[n + m]) {
                     if (boxes[n].children[0].classList.contains('head') == true) {
                         boxes[n].children[0].classList.remove('head');
@@ -153,11 +206,19 @@ function move(m) {
                         break;
                     }
                 }
-            }
-        }
+                else if (n < 20) {
+                    if (boxes[n].children[0].classList.contains('head') == true) {
+                        boxes[n].children[0].classList.remove('head');
+                        boxes[n + 180].children[0].classList.add('head');
 
-        if (m === 1) {
-            if ((n + 1) % 20 !== 0) {
+                        tanzim(n);
+
+                        break;
+                    }
+                }
+            }
+
+            if (m === 20) {
                 if (boxes[n + m]) {
                     if (boxes[n].children[0].classList.contains('head') == true) {
                         boxes[n].children[0].classList.remove('head');
@@ -168,38 +229,35 @@ function move(m) {
                         break;
                     }
                 }
-            }
-        }
+                else if (n >= 180) {
+                    if (boxes[n].children[0].classList.contains('head') == true) {
+                        boxes[n].children[0].classList.remove('head');
+                        boxes[n - 180].children[0].classList.add('head');
 
-        if (m === -20 || m === 20) {
-            if (boxes[n + m]) {
-                if (boxes[n].children[0].classList.contains('head') == true) {
-                    boxes[n].children[0].classList.remove('head');
-                    boxes[n + m].children[0].classList.add('head');
+                        tanzim(n);
 
-                    tanzim(n);
-
-                    break;
+                        break;
+                    }
                 }
             }
         }
-    }
 
-    for (let n = 0; n < boxes.length; n++) {
+        for (let n = 0; n < boxes.length; n++) {
 
-        if (boxes[n].children[0].classList.contains('head') == true && boxes[n].children[0].classList.contains('tail') == true) {
-            lose(n);
+            if (boxes[n].children[0].classList.contains('head') == true && boxes[n].children[0].classList.contains('tail') == true) {
+                lose(n);
+            }
+
+            if (boxes[n].children[0].classList.contains('head') == true && boxes[n].children[0].classList.contains('ball') == true) {
+                ballRandom();
+                backType();
+                saveData();
+                scores[1].textContent = marhale.length;
+            }
+
+            createTail(n);
+
         }
-
-        if (boxes[n].children[0].classList.contains('head') == true && boxes[n].children[0].classList.contains('ball') == true) {
-            ballRandom();
-            backType();
-            saveData();
-            scores[1].textContent = marhale.length;
-        }
-
-        createTail(n);
-
     }
 
 }
@@ -257,6 +315,7 @@ function ballRandom() {
 
 function lose(n) {
     boxes[n].children[0].style.backgroundColor = 'red';
+    loseOrNot = false;
     setTimeout(() => {
         window.location.reload();
     }, 2000);
