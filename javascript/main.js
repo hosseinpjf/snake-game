@@ -140,124 +140,247 @@ function stopActionBottom() {
 };
 
 //////////////////////////////////////////////////////////////////////////// addEventListener buttons
+
+
+let goInterValid;
+
+function goLeft() {
+
+    for (let n = 0; n < boxes.length; n++) {
+
+        if (n % 20 !== 0) {
+            if (boxes[n - 1]) {
+                if (boxes[n].children[0].classList.contains('head') == true) {
+                    boxes[n].children[0].classList.remove('head');
+                    boxes[n - 1].children[0].classList.add('head');
+
+                    tanzim(n);
+
+                    break;
+                }
+            }
+        }
+        else if (n % 20 === 0) {
+            if (boxes[n].children[0].classList.contains('head') == true) {
+                boxes[n].children[0].classList.remove('head');
+                boxes[n + 19].children[0].classList.add('head');
+
+                tanzim(n);
+
+                break;
+            }
+        }
+    }
+    for (let n = 0; n < boxes.length; n++) {
+
+        if (boxes[n].children[0].classList.contains('head') == true && boxes[n].children[0].classList.contains('tail') == true) {
+            lose(n);
+        }
+
+        if (boxes[n].children[0].classList.contains('head') == true && boxes[n].children[0].classList.contains('ball') == true) {
+            ballRandom();
+            backType();
+            saveData();
+            scores[1].textContent = marhale.length;
+        }
+
+        createTail(n);
+
+    }
+}
+function startGoLeft() {
+    goInterValid = setInterval(() => {
+        goLeft();
+    }, 150);
+};
+function stopGoLeft() {
+    clearInterval(goInterValid);
+};
+
+
+function goRight() {
+    for (let n = 0; n < boxes.length; n++) {
+        if ((n + 1) % 20 !== 0) {
+            if (boxes[n + 1]) {
+                if (boxes[n].children[0].classList.contains('head') == true) {
+                    boxes[n].children[0].classList.remove('head');
+                    boxes[n + 1].children[0].classList.add('head');
+
+                    tanzim(n);
+
+                    break;
+                }
+            }
+        }
+        else if ((n + 1) % 20 === 0) {
+            if (boxes[n].children[0].classList.contains('head') == true) {
+                boxes[n].children[0].classList.remove('head');
+                boxes[n - 19].children[0].classList.add('head');
+
+                tanzim(n);
+
+                break;
+            }
+        }
+    }
+    for (let n = 0; n < boxes.length; n++) {
+
+        if (boxes[n].children[0].classList.contains('head') == true && boxes[n].children[0].classList.contains('tail') == true) {
+            lose(n);
+        }
+
+        if (boxes[n].children[0].classList.contains('head') == true && boxes[n].children[0].classList.contains('ball') == true) {
+            ballRandom();
+            backType();
+            saveData();
+            scores[1].textContent = marhale.length;
+        }
+
+        createTail(n);
+
+    }
+}
+function startGoRight() {
+    goInterValid = setInterval(() => {
+        goRight();
+    }, 150);
+};
+function stopGoRight() {
+    clearInterval(goInterValid);
+};
+
+
+function goBottom() {
+    for (let n = 0; n < boxes.length; n++) {
+        if (boxes[n - 20]) {
+            if (boxes[n].children[0].classList.contains('head') == true) {
+                boxes[n].children[0].classList.remove('head');
+                boxes[n - 20].children[0].classList.add('head');
+
+                tanzim(n);
+
+                break;
+            }
+        }
+        else if (n < 20) {
+            if (boxes[n].children[0].classList.contains('head') == true) {
+                boxes[n].children[0].classList.remove('head');
+                boxes[n + 180].children[0].classList.add('head');
+
+                tanzim(n);
+
+                break;
+            }
+        }
+    }
+    for (let n = 0; n < boxes.length; n++) {
+
+        if (boxes[n].children[0].classList.contains('head') == true && boxes[n].children[0].classList.contains('tail') == true) {
+            lose(n);
+        }
+
+        if (boxes[n].children[0].classList.contains('head') == true && boxes[n].children[0].classList.contains('ball') == true) {
+            ballRandom();
+            backType();
+            saveData();
+            scores[1].textContent = marhale.length;
+        }
+
+        createTail(n);
+
+    }
+}
+function startGoBottom() {
+    goInterValid = setInterval(() => {
+        goBottom();
+    }, 150);
+};
+function stopGoBottom() {
+    clearInterval(goInterValid);
+};
+
+
+function goTop() {
+    for (let n = 0; n < boxes.length; n++) {
+        if (boxes[n + 20]) {
+            if (boxes[n].children[0].classList.contains('head') == true) {
+                boxes[n].children[0].classList.remove('head');
+                boxes[n + 20].children[0].classList.add('head');
+
+                tanzim(n);
+
+                break;
+            }
+        }
+        else if (n >= 180) {
+            if (boxes[n].children[0].classList.contains('head') == true) {
+                boxes[n].children[0].classList.remove('head');
+                boxes[n - 180].children[0].classList.add('head');
+
+                tanzim(n);
+
+                break;
+            }
+        }
+    }
+    for (let n = 0; n < boxes.length; n++) {
+
+        if (boxes[n].children[0].classList.contains('head') == true && boxes[n].children[0].classList.contains('tail') == true) {
+            lose(n);
+        }
+
+        if (boxes[n].children[0].classList.contains('head') == true && boxes[n].children[0].classList.contains('ball') == true) {
+            ballRandom();
+            backType();
+            saveData();
+            scores[1].textContent = marhale.length;
+        }
+
+        createTail(n);
+
+    }
+}
+function startGoTop() {
+    goInterValid = setInterval(() => {
+        goTop();
+    }, 150);
+};
+function stopGoTop() {
+    clearInterval(goInterValid);
+};
+
+
+
+
 let loseOrNot = true;
 function move(m) {
     if (loseOrNot) {
-        for (let n = 0; n < boxes.length; n++) {
 
-            if (m === -1) {
-                if (n % 20 !== 0) {
-                    if (boxes[n + m]) {
-                        if (boxes[n].children[0].classList.contains('head') == true) {
-                            boxes[n].children[0].classList.remove('head');
-                            boxes[n + m].children[0].classList.add('head');
-
-                            tanzim(n);
-
-                            break;
-                        }
-                    }
-                }
-                else if (n % 20 === 0) {
-                    if (boxes[n].children[0].classList.contains('head') == true) {
-                        boxes[n].children[0].classList.remove('head');
-                        boxes[n + 19].children[0].classList.add('head');
-
-                        tanzim(n);
-
-                        break;
-                    }
-                }
-            }
-
-            if (m === 1) {
-                if ((n + 1) % 20 !== 0) {
-                    if (boxes[n + m]) {
-                        if (boxes[n].children[0].classList.contains('head') == true) {
-                            boxes[n].children[0].classList.remove('head');
-                            boxes[n + m].children[0].classList.add('head');
-
-                            tanzim(n);
-
-                            break;
-                        }
-                    }
-                }
-                else if ((n + 1) % 20 === 0) {
-                    if (boxes[n].children[0].classList.contains('head') == true) {
-                        boxes[n].children[0].classList.remove('head');
-                        boxes[n - 19].children[0].classList.add('head');
-
-                        tanzim(n);
-
-                        break;
-                    }
-                }
-            }
-
-            if (m === -20) {
-                if (boxes[n + m]) {
-                    if (boxes[n].children[0].classList.contains('head') == true) {
-                        boxes[n].children[0].classList.remove('head');
-                        boxes[n + m].children[0].classList.add('head');
-
-                        tanzim(n);
-
-                        break;
-                    }
-                }
-                else if (n < 20) {
-                    if (boxes[n].children[0].classList.contains('head') == true) {
-                        boxes[n].children[0].classList.remove('head');
-                        boxes[n + 180].children[0].classList.add('head');
-
-                        tanzim(n);
-
-                        break;
-                    }
-                }
-            }
-
-            if (m === 20) {
-                if (boxes[n + m]) {
-                    if (boxes[n].children[0].classList.contains('head') == true) {
-                        boxes[n].children[0].classList.remove('head');
-                        boxes[n + m].children[0].classList.add('head');
-
-                        tanzim(n);
-
-                        break;
-                    }
-                }
-                else if (n >= 180) {
-                    if (boxes[n].children[0].classList.contains('head') == true) {
-                        boxes[n].children[0].classList.remove('head');
-                        boxes[n - 180].children[0].classList.add('head');
-
-                        tanzim(n);
-
-                        break;
-                    }
-                }
-            }
+        if (m === -1) {
+            stopGoRight();
+            stopGoBottom();
+            stopGoTop();
+            startGoLeft();
         }
-
-        for (let n = 0; n < boxes.length; n++) {
-
-            if (boxes[n].children[0].classList.contains('head') == true && boxes[n].children[0].classList.contains('tail') == true) {
-                lose(n);
-            }
-
-            if (boxes[n].children[0].classList.contains('head') == true && boxes[n].children[0].classList.contains('ball') == true) {
-                ballRandom();
-                backType();
-                saveData();
-                scores[1].textContent = marhale.length;
-            }
-
-            createTail(n);
-
+        if (m === 1) {
+            stopGoLeft();
+            stopGoBottom();
+            stopGoTop();
+            startGoRight();
         }
+        if (m === -20) {
+            stopGoLeft();
+            stopGoRight();
+            stopGoTop();
+            startGoBottom();
+        }
+        if (m === 20) {
+            stopGoLeft();
+            stopGoRight();
+            stopGoBottom();
+            startGoTop();
+        }
+        
     }
 
 }
@@ -316,6 +439,11 @@ function ballRandom() {
 function lose(n) {
     boxes[n].children[0].style.backgroundColor = 'red';
     loseOrNot = false;
+    stopGoLeft();
+    stopGoRight();
+    stopGoBottom();
+    stopGoTop();
+
     setTimeout(() => {
         window.location.reload();
     }, 2000);
