@@ -289,36 +289,44 @@ function stopGoTop() {
     clearInterval(goInterValid);
 };
 
-
-
-
-let loseOrNot = true;
+let endMove, loseOrNot = true;
 function move(m) {
     if (loseOrNot) {
-
-        if (m === -1) {
-            stopGoRight();
-            stopGoBottom();
-            stopGoTop();
-            startGoLeft();
+        if(endMove !== 1){
+            if (m === -1) {
+                endMove = m;
+                stopGoBottom();
+                stopGoTop();
+                stopGoRight();
+                startGoLeft();
+            }
         }
-        if (m === 1) {
-            stopGoLeft();
-            stopGoBottom();
-            stopGoTop();
-            startGoRight();
+        if(endMove !== -1){
+            if (m === 1) {
+                endMove = m;
+                stopGoBottom();
+                stopGoTop();
+                stopGoLeft();
+                startGoRight();
+            }
         }
-        if (m === -20) {
-            stopGoLeft();
-            stopGoRight();
-            stopGoTop();
-            startGoBottom();
+        if(endMove !== 20){
+            if (m === -20) {
+                endMove = m;
+                stopGoLeft();
+                stopGoRight();
+                stopGoTop();
+                startGoBottom();
+            }
         }
-        if (m === 20) {
-            stopGoLeft();
-            stopGoRight();
-            stopGoBottom();
-            startGoTop();
+        if(endMove !== -20){
+            if (m === 20) {
+                endMove = m;
+                stopGoLeft();
+                stopGoRight();
+                stopGoBottom();
+                startGoTop();
+            }
         }
         
     }
