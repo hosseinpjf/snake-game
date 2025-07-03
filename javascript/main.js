@@ -61,83 +61,23 @@ window.addEventListener("resize", debounce(handleResize, 200));
 
 //////////////////////////////////////////////////////////////////////////// buttons
 
-let intervalId;
-
 const leftBtn = document.getElementById('leftBtn');
 const rightBtn = document.getElementById('rightBtn');
 const topBtn = document.getElementById('topBtn');
 const bottomBtn = document.getElementById('bottomBtn');
 
-leftBtn.addEventListener('mousedown', startActionLeft);
-leftBtn.addEventListener('mouseup', stopActionLeft);
-leftBtn.addEventListener('mouseleave', stopActionLeft);
-
-leftBtn.addEventListener('touchstart', startActionLeft);
-leftBtn.addEventListener('touchend', stopActionLeft);
-leftBtn.addEventListener('touchcancel', stopActionLeft);
-
-function startActionLeft() {
-    intervalId = setInterval(() => {
-        move(-1);
-    }, 150);
-};
-function stopActionLeft() {
-    clearInterval(intervalId);
-};
-
-
-rightBtn.addEventListener('mousedown', startActionRight);
-rightBtn.addEventListener('mouseup', stopActionRight);
-rightBtn.addEventListener('mouseleave', stopActionRight);
-
-rightBtn.addEventListener('touchstart', startActionRight);
-rightBtn.addEventListener('touchend', stopActionRight);
-rightBtn.addEventListener('touchcancel', stopActionRight);
-
-function startActionRight() {
-    intervalId = setInterval(() => {
-        move(1);
-    }, 150);
-};
-function stopActionRight() {
-    clearInterval(intervalId);
-};
-
-
-topBtn.addEventListener('mousedown', startActionTop);
-topBtn.addEventListener('mouseup', stopActionTop);
-topBtn.addEventListener('mouseleave', stopActionTop);
-
-topBtn.addEventListener('touchstart', startActionTop);
-topBtn.addEventListener('touchend', stopActionTop);
-topBtn.addEventListener('touchcancel', stopActionTop);
-
-function startActionTop() {
-    intervalId = setInterval(() => {
-        move(-20);
-    }, 150);
-};
-function stopActionTop() {
-    clearInterval(intervalId);
-};
-
-
-bottomBtn.addEventListener('mousedown', startActionBottom);
-bottomBtn.addEventListener('mouseup', stopActionBottom);
-bottomBtn.addEventListener('mouseleave', stopActionBottom);
-
-bottomBtn.addEventListener('touchstart', startActionBottom);
-bottomBtn.addEventListener('touchend', stopActionBottom);
-bottomBtn.addEventListener('touchcancel', stopActionBottom);
-
-function startActionBottom() {
-    intervalId = setInterval(() => {
-        move(20);
-    }, 150);
-};
-function stopActionBottom() {
-    clearInterval(intervalId);
-};
+leftBtn.addEventListener('mousedown', () => {
+    move(-1);
+});
+rightBtn.addEventListener('mousedown', () => {
+    move(1);
+});
+topBtn.addEventListener('mousedown', () => {
+    move(-20);
+});
+bottomBtn.addEventListener('mousedown', () => {
+    move(20);
+});
 
 //////////////////////////////////////////////////////////////////////////// addEventListener buttons
 
