@@ -137,13 +137,6 @@ function stopActionBottom() {
 
 //////////////////////////////////////////////////////////////////////////// addEventListener buttons
 
-let marhale = [], eaten = 0;
-
-function backType() {
-    marhale.push(marhale[0]);
-    eaten++;
-}
-
 function move(m) {
 
     for (let n = 0; n < boxes.length; n++) {
@@ -206,18 +199,17 @@ function move(m) {
         }
 
         createTail(n);
+
     }
+
 }
 
 //////////////////////////////////////////////////////////////////////////// works functions
-
-function createTail(n) {
-    marhale.forEach(number => {
-        boxes[number].children[0].classList.add('tail');
-        if (number !== n) {
-            boxes[n].children[0].classList.remove('tail');
-        }
-    });
+let marhale = [], eaten = 0;
+function backType() {
+    marhale.unshift(marhale[0]);
+    eaten++;
+    // console.log('backType: ' + marhale);
 }
 
 function tanzim(n) {
@@ -228,14 +220,32 @@ function tanzim(n) {
     console.log(marhale);
 }
 
-function ballRandom() {
-    let random = Math.floor(Math.random() * 200);
+function createTail(n) {
     marhale.forEach(number => {
-        if (number == random) {
-            random = Math.floor(Math.random() * 200);
+        boxes[number].children[0].classList.add('tail');
+        if (number !== n) {
+            boxes[n].children[0].classList.remove('tail');
         }
     });
+    // console.log('createTail: ' + marhale);
+}
+
+function ballRandom() {
+
+    let numberBall;
+    for (let n = 0; n < boxes.length; n++) {
+        if (boxes[n].children[0].classList.contains('head') === true) {
+            numberBall = n;
+        }
+    }
+
+    let random;
+    do {
+        random = Math.floor(Math.random() * 200);
+    } while (marhale.includes(random) || random == numberBall);
+
     for (let o = 0; o < boxes.length; o++) {
+
         if (boxes[o].children[0].classList.contains('ball') === true) {
             boxes[o].children[0].classList.remove('ball');
         }

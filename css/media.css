@@ -1,68 +1,14 @@
-@media (min-width: 400px) {
-    /* .box {
-        width: calc(100vw / 24);
-        height: calc(100vw / 24);
-    } */
-}
+@media (min-width: 400px) {}
 
-@media (min-width: 576px) {
-
-    /* .box {
-        width: calc(100vw / 23.5);
-        height: calc(100vw / 23.5);
-    } */
-}
+@media (min-width: 576px) {}
 
 @media (min-width: 768px) {}
 
 @media (min-width: 992px) {}
 
-@media (min-width: 1200px) {
+@media (min-width: 1200px) {}
 
-    /* .box {
-        width: calc(100vw / 31.5);
-        height: calc(100vw / 31.5);
-    } */
-
-    /* .parentChooseColor {
-        grid-template-columns: 1fr;
-    } */
-
-    /* .parentBoxesSettings {
-        height: 758px;
-    } */
-
-    /* .container {
-        flex-direction: row;
-    } */
-
-    /* .sidebar {
-        order: 1;
-    }
-
-    .containerBoxs {
-        order: 2;
-    } */
-}
-
-@media (min-width: 1400px) {
-    /* .sidebar {
-        width: 30%;
-    } */
-
-    /* .containerBoxs {
-        width: 70%;
-        margin: 0;
-    } */
-
-    /* .parentChooseColor {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .parentBoxesSettings {
-        height: 470px;
-    } */
-}
+@media (min-width: 1400px) {}
 
 @media (max-height: 500px) {
     .sidebar {
@@ -81,7 +27,7 @@
 }
 
 @media screen and (orientation: landscape) {
-    .parentHorizontal{
+    .parentHorizontal {
         display: none;
     }
 }
