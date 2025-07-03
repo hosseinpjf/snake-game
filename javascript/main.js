@@ -784,9 +784,20 @@ document.querySelector('.closeBox button').addEventListener('click', () => {
 //////////////////////////////////////////////////////////////////////////// full Screen
 
 const btnFullScreen = document.getElementById('btnFullScreen');
+let checkFullScrren = false;
 
 btnFullScreen.addEventListener('click', () => {
+    screenFull();
+    if (checkFullScrren == false) {
+        checkFullScrren = true
+    }
+    else {
+        checkFullScrren = false;
+    }
+    locFullScreen(checkFullScrren);
+})
 
+function screenFull() {
     if (btnFullScreen.children[0].classList.contains('fa-expand') === true) {
         btnFullScreen.children[0].classList.replace('fa-expand', 'fa-compress');
     }
@@ -816,5 +827,15 @@ btnFullScreen.addEventListener('click', () => {
             document.webkitCancelFullScreen();
         }
     }
+}
 
+function locFullScreen(checkFullScrrenValue) {
+    localStorage.setItem('fullScreen', checkFullScrrenValue);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    
+    if(JSON.parse(localStorage.getItem('fullScreen')) == true){
+        screenFull();
+    }
 })
