@@ -82,7 +82,7 @@ bottomBtn.addEventListener('mousedown', () => {
 //////////////////////////////////////////////////////////////////////////// addEventListener buttons
 
 
-let goInterValid;
+let goInterValid, speed = 150;
 
 function goLeft() {
 
@@ -131,7 +131,7 @@ function goLeft() {
 function startGoLeft() {
     goInterValid = setInterval(() => {
         goLeft();
-    }, 150);
+    }, speed);
 };
 function stopGoLeft() {
     clearInterval(goInterValid);
@@ -183,7 +183,7 @@ function goRight() {
 function startGoRight() {
     goInterValid = setInterval(() => {
         goRight();
-    }, 150);
+    }, speed);
 };
 function stopGoRight() {
     clearInterval(goInterValid);
@@ -233,7 +233,7 @@ function goBottom() {
 function startGoBottom() {
     goInterValid = setInterval(() => {
         goBottom();
-    }, 150);
+    }, speed);
 };
 function stopGoBottom() {
     clearInterval(goInterValid);
@@ -283,7 +283,7 @@ function goTop() {
 function startGoTop() {
     goInterValid = setInterval(() => {
         goTop();
-    }, 150);
+    }, speed);
 };
 function stopGoTop() {
     clearInterval(goInterValid);
@@ -292,7 +292,7 @@ function stopGoTop() {
 let endMove, loseOrNot = true;
 function move(m) {
     if (loseOrNot) {
-        if(endMove !== 1){
+        if (endMove !== 1) {
             if (m === -1) {
                 endMove = m;
                 stopGoBottom();
@@ -301,7 +301,7 @@ function move(m) {
                 startGoLeft();
             }
         }
-        if(endMove !== -1){
+        if (endMove !== -1) {
             if (m === 1) {
                 endMove = m;
                 stopGoBottom();
@@ -310,7 +310,7 @@ function move(m) {
                 startGoRight();
             }
         }
-        if(endMove !== 20){
+        if (endMove !== 20) {
             if (m === -20) {
                 endMove = m;
                 stopGoLeft();
@@ -319,7 +319,7 @@ function move(m) {
                 startGoBottom();
             }
         }
-        if(endMove !== -20){
+        if (endMove !== -20) {
             if (m === 20) {
                 endMove = m;
                 stopGoLeft();
@@ -328,7 +328,7 @@ function move(m) {
                 startGoTop();
             }
         }
-        
+
     }
 
 }
@@ -616,6 +616,26 @@ let FoodColorShow = new PositionColorFoodColor();
 parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(11) input[type=button]').addEventListener('click', FoodColorShow.show.bind(FoodColorShow));
 
 
+class PositionSnakeSpeed {
+    constructor(colorLocal) {
+        this.colorLocal = colorLocal;
+    }
+    sendy() {
+        speed = this.colorLocal;
+        clearInterval(goInterValid);
+        parentBoxesSettings.querySelector('.boxChooseSpeed input[type=range]').value = speed;
+    }
+    show() {
+        let speeding = parentBoxesSettings.querySelector('.boxChooseSpeed input[type=range]').value;
+        speed = speeding;
+        clearInterval(goInterValid);
+        settingsLoc('SnakeSpeed', speeding);
+    }
+}
+let SnakeSpeedShow = new PositionSnakeSpeed();
+parentBoxesSettings.querySelector('.boxChooseSpeed input[type=button]').addEventListener('click', SnakeSpeedShow.show.bind(SnakeSpeedShow));
+
+
 const checkboxBorder = parentBoxesSettings.querySelector('.boxChooseBoard input[type=checkbox]');
 class PositionColorBorderBoxes {
     constructor(colorLocal) {
@@ -738,6 +758,12 @@ document.addEventListener('DOMContentLoaded', () => {
     //     let bloodColorSendy = new PositionColorbloodColor(getLocal.get('bloodColor'));
     //     bloodColorSendy.sendy();
     // }
+
+    if (getLocal.get('SnakeSpeed')) {
+        let SnakeSpeedSendy = new PositionSnakeSpeed(getLocal.get('SnakeSpeed'));
+        SnakeSpeedSendy.sendy();
+    }
+
     if (getLocal.get('BorderBoxes')) {
         let BorderBoxesSendy = new PositionColorBorderBoxes(getLocal.get('BorderBoxes'));
         BorderBoxesSendy.sendy();

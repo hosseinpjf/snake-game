@@ -19,9 +19,10 @@ body {
 }
 
 /* Utility Clasess */
-.activeButton:active{
+.activeButton:active {
     transform: scale(.96);
 }
+
 /* Utility Clasess */
 
 .container {
@@ -51,7 +52,7 @@ body {
 
 /* show Button */
 
-.parentShow{
+.parentShow {
     width: 100%;
     /* height: 30px; */
     padding: 0 10px;
@@ -63,7 +64,7 @@ body {
     /* z-index: 5; */
 }
 
-.parentShow > button{
+.parentShow>button {
     width: 100%;
     /* height: 100%; */
     padding: 10px;
@@ -73,11 +74,11 @@ body {
     font-size: 22px;
 }
 
-.parentShow > button i{
+.parentShow>button i {
     color: var(--textColor);
 }
 
-#boxShowSettings{
+#boxShowSettings {
     background-color: #cacaca;
     width: 250px;
     height: calc(100vh - 40px);
@@ -91,11 +92,11 @@ body {
     transition: all .5s;
 }
 
-.thisBoxShow{
+.thisBoxShow {
     transform: translateX(0) !important;
 }
 
-.closeBox{
+.closeBox {
     width: 100%;
     height: 55px;
     display: flex;
@@ -104,7 +105,7 @@ body {
     padding: 10px;
 }
 
-.closeBox button{
+.closeBox button {
     border: none;
     outline: none;
     cursor: pointer;
@@ -115,7 +116,7 @@ body {
     /* background-color: transparent; */
 }
 
-.closeBox button i{
+.closeBox button i {
     color: var(--textColor);
 }
 
@@ -161,10 +162,10 @@ body {
 } */
 
 /* .parentChooseColor { */
-    /* display: grid; */
-    /* grid-template-columns: 1fr; */
-    /* padding: 20px 2px; */
-    /* justify-items: center; */
+/* display: grid; */
+/* grid-template-columns: 1fr; */
+/* padding: 20px 2px; */
+/* justify-items: center; */
 /* } */
 
 .boxChooseColor {
@@ -174,7 +175,8 @@ body {
     max-width: 205px;
 }
 
-.boxChooseColor label {
+.boxChooseColor label,
+.boxChooseSpeed label {
     color: var(--textColor);
 }
 
@@ -193,7 +195,8 @@ body {
     cursor: pointer;
 }
 
-.chooseColor input[type=button] {
+.chooseColor input[type=button],
+.chooseSpeed input[type=button] {
     width: 90px;
     height: 25px;
     background-color: #969696;
@@ -217,8 +220,28 @@ body {
     cursor: pointer;
 }
 
-.boxChooseBoard label{
+.boxChooseBoard label {
     cursor: pointer;
+}
+
+.boxChooseSpeed {
+    width: 100%;
+    padding: 10px;
+    display: grid;
+    row-gap: 5px;
+    max-width: 205px;
+}
+
+.chooseSpeed {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    row-gap: 6px;
+}
+
+.boxChooseSpeed input[type=range] {
+    width: 100%;
 }
 
 /* score */
@@ -307,9 +330,9 @@ body {
 /* boxes */
 
 /* .containerBoxes { */
-    /* margin: 0 auto; */
-    /* width: 100%; */
-    /* order: 1; */
+/* margin: 0 auto; */
+/* width: 100%; */
+/* order: 1; */
 /* } */
 
 #parentBox {
@@ -338,13 +361,13 @@ body {
     place-items: center;
 }
 
-.boxBorderClick{
+.boxBorderClick {
     border: 1px solid black;
 }
 
 .ball {
     border-radius: 50%;
-    background-color:var(--colorBall);
+    background-color: var(--colorBall);
     width: 80%;
     height: 80%;
     transition: all .7s;
@@ -369,7 +392,7 @@ body {
 
 /* horizontal */
 
-.parentHorizontal{
+.parentHorizontal {
     position: absolute;
     top: 0;
     right: 0;
@@ -384,7 +407,7 @@ body {
     justify-content: center;
 }
 
-.horizontal{
+.horizontal {
     width: 50%;
     height: 50%;
     background-color: rgba(204, 204, 204, 0.5);
@@ -397,7 +420,7 @@ body {
     min-width: 280px;
 }
 
-.horizontal h2{
+.horizontal h2 {
     text-align: center;
     font-size: clamp(18px, 5vw, 22px);
 }
