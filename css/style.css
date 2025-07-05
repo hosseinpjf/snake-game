@@ -124,7 +124,8 @@ body {
 }
 
 .boxChooseColor label,
-.boxChooseSpeed label {
+.boxChooseSpeed label,
+.boxChooseSong label {
     color: var(--textColor);
 }
 
@@ -189,6 +190,84 @@ body {
 
 .boxChooseSpeed input[type=range] {
     width: 100%;
+}
+
+.boxChooseSong {
+    padding: 10px;
+    max-width: 205px;
+    /* display: grid;
+    row-gap: 10px; */
+}
+
+.boxChooseSong label{
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.parentAnglesGSongs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+}
+
+.chooseSong {
+    width: calc(205px - 20px);
+    display: flex;
+    flex-wrap: nowrap;
+    column-gap: 15px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    /* border: 1px solid; */
+    padding: 10px 14px;
+}
+
+.chooseSong::-webkit-scrollbar {
+    display: none;
+}
+
+.chooseSong i {
+    cursor: pointer;
+    font-size: 25px;
+    color: var(--textColor);
+}
+
+.parentAnglesGSongs button {
+    height: 100%;
+    width: 14px;
+    position: absolute;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #fff;
+}
+
+#angleLeft {
+    left: 0;
+}
+
+#angleRight {
+    right: 0;
+}
+
+.noneSong {
+    display: none;
+}
+
+.controlAudios {
+    display: flex;
+    justify-content: space-evenly;
+    border-bottom: 1px solid var(--textColor);
+    border-top: 1px solid var(--textColor);
+    padding: 5px 0;
+}
+
+.controlAudios i {
+    cursor: pointer;
+    font-size: 20px;
+    color: var(--textColor);
 }
 
 /* score */

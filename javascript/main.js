@@ -338,7 +338,6 @@ let marhale = [], eaten = 0;
 function backType() {
     marhale.unshift(marhale[0]);
     eaten++;
-    // console.log('backType: ' + marhale);
 }
 
 function tanzim(n) {
@@ -356,7 +355,6 @@ function createTail(n) {
             boxes[n].children[0].classList.remove('tail');
         }
     });
-    // console.log('createTail: ' + marhale);
 }
 
 function ballRandom() {
@@ -822,3 +820,352 @@ function screenFull() {
 }
 
 localStorage.removeItem('fullScreen');
+
+//////////////////////////////////////////////////////////////////////////// song
+const stopStartAudio = document.getElementById('stopStartAudio');
+const rotationTypeAudio = document.getElementById('rotationTypeAudio');
+let playNow, backAudio = [];
+let socreBackAudio = 1;
+
+const songs = Array.from(document.querySelectorAll('.chooseSong i'));
+const audios = Array.from(document.querySelectorAll('.noneSong audio'));
+
+let songing = songs[0], audiong = audios[0];
+
+songs.forEach(song => {
+    song.addEventListener('click', () => {
+        songing = song;
+        audiong = audios[songs.indexOf(song)];
+        stopStart(songing, audiong);
+        socreBackAudio = 1;
+    })
+})
+
+function stopStart(btnSong, audio) {
+    if (btnSong.classList.contains('fa-play-circle')) {
+        stopAllAudio();
+        btnSong.classList.replace('fa-play-circle', 'fa-pause-circle');
+        stopStartAudio.classList.replace('fa-play', 'fa-pause');
+
+        let songAudio = [btnSong, audio];
+        backAudio.push(songAudio);
+
+        rotationTypeIf(audio);
+
+        checkLove(btnSong);
+    }
+    else {
+        btnSong.classList.replace('fa-pause-circle', 'fa-play-circle');
+        audio.pause();
+    }
+
+}
+
+function stopAllAudio() {
+    songs.forEach(song => {
+        song.classList.replace('fa-pause-circle', 'fa-play-circle');
+    })
+    audios.forEach(audio => {
+        audio.pause();
+        audio.currentTime = 0;
+    })
+}
+
+
+const chooseSong = document.getElementsByClassName('chooseSong')[0];
+document.getElementById('angleLeft').addEventListener('click', () => {
+    chooseSong.scrollLeft -= 80;
+})
+document.getElementById('angleRight').addEventListener('click', () => {
+    chooseSong.scrollLeft += 80;
+})
+
+
+stopStartAudio.addEventListener('click', () => {
+    if (stopStartAudio.classList.contains('fa-play') == true) {
+        stopStartAudio.classList.replace('fa-play', 'fa-pause');
+        stopStart(songing, audiong);
+        socreBackAudio = 1;
+    }
+    else {
+        stopStartAudio.classList.replace('fa-pause', 'fa-play');
+        stopAllAudio();
+    }
+})
+
+
+rotationTypeAudio.addEventListener('click', () => {
+    if (rotationTypeAudio.classList.contains('fa-exchange') == true) {
+        rotationTypeAudio.classList.replace('fa-exchange', 'fa-random');
+        playNow = 'random';
+    }
+    else if (rotationTypeAudio.classList.contains('fa-random') == true) {
+        rotationTypeAudio.classList.replace('fa-random', 'fa-undo');
+        playNow = 'undo';
+    }
+    else if (rotationTypeAudio.classList.contains('fa-undo') == true) {
+        rotationTypeAudio.classList.replace('fa-undo', 'fa-dot-circle-o');
+        playNow = 'dot';
+    }
+    else if (rotationTypeAudio.classList.contains('fa-dot-circle-o') == true) {
+        rotationTypeAudio.classList.replace('fa-dot-circle-o', 'fa-exchange');
+        playNow = 'exchange';
+    }
+});
+
+
+function rotationTypeIf(thisAudio) {
+    let objRotation = new RotationType(thisAudio);
+
+    if (rotationTypeAudio.classList.contains('fa-exchange')) {
+        playNow = 'exchange';
+        objRotation.exchange();
+    }
+    else if (rotationTypeAudio.classList.contains('fa-random')) {
+        playNow = 'random';
+        objRotation.random();
+    }
+    else if (rotationTypeAudio.classList.contains('fa-undo')) {
+        playNow = 'undo';
+        objRotation.undo();
+    }
+    else if (rotationTypeAudio.classList.contains('fa-dot-circle-o')) {
+        playNow = 'dot';
+        objRotation.dot();
+    }
+}
+
+let index, lastIndex = -1;
+
+class RotationType {
+    constructor(thisAudio) {
+        this.thisAudio = thisAudio;
+    }
+
+    exchange() {
+        this.thisAudio.play();
+        this.thisAudio.onended = () => {
+            switch (playNow) {
+                case 'exchange':
+                    this.exchangeTor(+1);
+                    break;
+                case 'random':
+                    this.randomTor();
+                    break;
+                case 'undo':
+                    this.undoTor();
+                    break;
+                case 'dot':
+                    this.dotTor();
+                    break;
+            }
+        }
+    }
+    exchangeTor(rightLeft) {
+        const currentIndex = audios.indexOf(this.thisAudio);
+        const nextIndex = (currentIndex + rightLeft) % audios.length;
+        songing = songs[nextIndex];
+        audiong = audios[nextIndex];
+        stopStart(songing, audiong);
+    }
+
+    random() {
+        this.thisAudio.play();
+        this.thisAudio.onended = () => {
+            switch (playNow) {
+                case 'random':
+                    this.randomTor();
+                    break;
+                case 'exchange':
+                    this.exchangeTor(+1);
+                    break;
+                case 'undo':
+                    this.undoTor();
+                    break;
+                case 'dot':
+                    this.dotTor();
+                    break;
+            }
+        }
+    }
+    randomTor() {
+        do {
+            index = Math.floor(Math.random() * audios.length);
+        } while (index === lastIndex && audios.length > 1);
+        lastIndex = index;
+        songing = songs[index];
+        audiong = audios[index];
+        stopStart(songing, audiong);
+    }
+
+    undo() {
+        this.thisAudio.play();
+        this.thisAudio.onended = () => {
+            switch (playNow) {
+                case 'undo':
+                    this.undoTor();
+                    break;
+                case 'exchange':
+                    this.exchangeTor(+1);
+                    break;
+                case 'random':
+                    this.randomTor();
+                    break;
+                case 'dot':
+                    this.dotTor();
+                    break;
+            }
+        };
+    }
+    undoTor() {
+        this.thisAudio.currentTime = 0;
+        this.undo();
+    }
+    dot() {
+        this.thisAudio.play();
+        this.thisAudio.onended = () => {
+            switch (playNow) {
+                case 'dot':
+                    this.dotTor();
+                    break;
+                case 'undo':
+                    this.undoTor();
+                    break;
+                case 'exchange':
+                    this.exchangeTor(+1);
+                    break;
+                case 'random':
+                    this.randomTor();
+                    break;
+            }
+        }
+    }
+    dotTor() {
+        this.thisAudio.pause();
+        songing.classList.replace('fa-pause-circle', 'fa-play-circle');
+        stopStartAudio.classList.replace('fa-pause', 'fa-play');
+    }
+}
+
+
+
+const nextAudio = document.getElementById('nextAudio');
+nextAudio.addEventListener('click', () => {
+    let nextRotation = new RotationType(audiong);
+
+    if (playNow == 'exchange' || playNow == 'undo' || playNow == 'dot') {
+        socreBackAudio = 1;
+        nextRotation.exchangeTor(+1);
+    }
+    else if (playNow == 'random') {
+        socreBackAudio = 1;
+        nextRotation.randomTor();
+    }
+})
+
+
+const prevAudio = document.getElementById('prevAudio');
+prevAudio.addEventListener('click', () => {
+    let prevRotation = new RotationType(audiong);
+
+    if (playNow == 'exchange' || playNow == 'undo' || playNow == 'dot') {
+        prevRotation.exchangeTor(- 1 + audios.length);
+    }
+
+    else if (playNow == 'random') {
+
+        stopAllAudio();
+        stopStartAudio.classList.replace('fa-pause', 'fa-play');
+
+        backAudio.forEach(element => {
+            let tak = backAudio.indexOf(element);
+            if (backAudio[tak - 1]) {
+                if (backAudio[tak - 1][0] == element[0]) {
+                    backAudio.splice(tak - 1, 1);
+                }
+            }
+            if (backAudio[tak + 1]) {
+                if (backAudio[tak + 1][0] == element[0]) {
+                    backAudio.splice(tak + 1, 1);
+                }
+            }
+        })
+
+        socreBackAudio++;
+        if (backAudio.length - socreBackAudio > -1) {
+
+            stopStartAudio.classList.replace('fa-play', 'fa-pause');
+
+            songing = backAudio[backAudio.length - socreBackAudio][0];
+            audiong = backAudio[backAudio.length - socreBackAudio][1];
+
+            audiong.play();
+            songing.classList.replace('fa-play-circle', 'fa-pause-circle');
+
+            let songAudio = [songing, audiong];
+            backAudio.push(songAudio);
+            socreBackAudio++;
+        }
+    }
+})
+
+const loveAudio = document.getElementById('loveAudio');
+loveAudio.addEventListener('click', () => {
+    if (loveAudio.classList.contains('fa-heart-o')) {
+        loveAudio.classList.replace('fa-heart-o', 'fa-heart');
+        concatLove(true);
+    }
+    else {
+        loveAudio.classList.replace('fa-heart', 'fa-heart-o');
+        concatLove(false);
+    }
+})
+
+function concatLove(typeGo) {
+    let concats;
+    let indexSong = songs.indexOf(songing).toString();
+
+    if (localStorage.getItem('loveAudio') == null) {
+        concats = new Set();
+        if (typeGo == true) {
+            concats.add(indexSong);
+        }
+        else {
+            concats.delete(indexSong);
+        }
+    }
+    else {
+        let likeAudio = localStorage.getItem('loveAudio').split(',');
+        concats = new Set(likeAudio);
+        if (typeGo == true) {
+            concats.add(indexSong);
+        }
+        else {
+            concats.delete(indexSong);
+        }
+    }
+
+    concats.forEach(element => {
+        if(element == ''){
+            concats.delete(element);
+        }
+    })
+
+    let concatsArray = Array.from(concats);
+    localStorage.setItem('loveAudio', concatsArray);
+}
+
+function checkLove(thisSong) {
+    if (localStorage.getItem('loveAudio') != null) {
+        let likeAudio = localStorage.getItem('loveAudio').split(',');
+
+        numberSong = songs.indexOf(thisSong).toString();
+        if (likeAudio.includes(numberSong)) {
+            loveAudio.classList.replace('fa-heart-o', 'fa-heart');
+        }
+        else {
+            loveAudio.classList.replace('fa-heart', 'fa-heart-o');
+        }
+    }
+
+}
