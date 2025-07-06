@@ -26,7 +26,7 @@ function startGame() {
         scores[0].textContent = localStorage.getItem('score').split(',');
     }
     else {
-        document.querySelector('.score h1').textContent = 1;
+        scores[0].textContent = 1;
     }
 }
 
@@ -412,6 +412,7 @@ function saveData() {
 
 const parentBoxesSettings = document.getElementsByClassName('parentBoxesSettings')[0];
 const boxShowSettings = document.getElementById('boxShowSettings');
+const sidebar = document.getElementsByClassName('sidebar')[0];
 
 const body = document.getElementsByTagName('body')[0];
 class PositionColorFullScreen {
@@ -448,7 +449,6 @@ let GameFrameShow = new PositionColorGameFrame();
 parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(2) input[type=button]').addEventListener('click', GameFrameShow.show.bind(GameFrameShow));
 
 
-const sidebar = document.getElementsByClassName('sidebar')[0];
 class PositionColorSidebarFrame {
     constructor(colorLocal) {
         this.colorLocal = colorLocal;
@@ -631,43 +631,108 @@ class PositionSnakeSpeed {
     }
 }
 let SnakeSpeedShow = new PositionSnakeSpeed();
-parentBoxesSettings.querySelector('.boxChooseSpeed input[type=button]').addEventListener('click', SnakeSpeedShow.show.bind(SnakeSpeedShow));
+parentBoxesSettings.querySelector('.boxChooseSpeed button').addEventListener('click', SnakeSpeedShow.show.bind(SnakeSpeedShow));
 
 
-const checkboxBorder = parentBoxesSettings.querySelector('.boxChooseBoard input[type=checkbox]');
+const checkboxBorder = Array.from(parentBoxesSettings.querySelectorAll('.boxChooseBoard button, .boxChooseBoard button input'));
 class PositionColorBorderBoxes {
     constructor(colorLocal) {
         this.colorLocal = colorLocal;
     }
     sendy() {
-        checkboxBorder.checked = this.colorLocal;
+        checkboxBorder[1].checked = this.colorLocal;
         if (this.colorLocal) {
             boxes.forEach(element => {
                 element.classList.add('boxBorderClick');
             })
+            checkboxBorder[0].style.backgroundColor = '#0078d4';
+            checkboxBorder[0].textContent = 'No';
         }
         else {
             boxes.forEach(element => {
                 element.classList.remove('boxBorderClick');
             })
+            checkboxBorder[0].style.backgroundColor = '#f0f0f0';
+            checkboxBorder[0].textContent = 'Yes';
         }
     }
     show() {
-        if (checkboxBorder.checked) {
+        checkboxBorder[1].checked = !checkboxBorder[1].checked;
+        if (checkboxBorder[1].checked) {
             boxes.forEach(element => {
                 element.classList.add('boxBorderClick');
             })
+            checkboxBorder[0].style.backgroundColor = '#0078d4';
+            checkboxBorder[0].textContent = 'No';
         }
         else {
             boxes.forEach(element => {
                 element.classList.remove('boxBorderClick');
             })
+            checkboxBorder[0].style.backgroundColor = '#f0f0f0';
+            checkboxBorder[0].textContent = 'Yes';
         }
-        settingsLoc('BorderBoxes', checkboxBorder.checked);
+        settingsLoc('BorderBoxes', checkboxBorder[1].checked);
     }
 }
 let BorderBoxesShow = new PositionColorBorderBoxes();
-checkboxBorder.addEventListener('change', BorderBoxesShow.show.bind(BorderBoxesShow));
+checkboxBorder.forEach(element => {
+    element.addEventListener('click', BorderBoxesShow.show.bind(BorderBoxesShow));
+});
+
+
+const closeBox = document.getElementsByClassName('closeBox')[0];
+const btnDirectionSidebar = parentBoxesSettings.querySelector('.boxChooseSidebarDirection button i');
+class PositionDirectionSidebar {
+    constructor(colorLocal) {
+        this.colorLocal = colorLocal;
+    }
+    sendy() {
+        if (btnDirectionSidebar.classList.contains(this.colorLocal)) {
+            btnDirectionSidebar.classList.replace('fa-long-arrow-right', 'fa-long-arrow-left');
+            sidebar.style.order = 1;
+            closeBox.style.justifyContent = 'flex-start';
+            boxShowSettings.style.transform = 'translateX(120%)';
+            document.documentElement.style.setProperty('--transformBoxSowClick1', 'translateX(-105px)');
+            document.documentElement.style.setProperty('--transformBoxSowClick2', 'translateX(-85px)');
+            document.documentElement.style.setProperty('--transformBoxSowClick3', 'translateX(-55px)');
+        }
+        else {
+            btnDirectionSidebar.classList.replace('fa-long-arrow-left', 'fa-long-arrow-right')
+            sidebar.style.order = 0;
+            closeBox.style.justifyContent = 'flex-end';
+            boxShowSettings.style.transform = 'translateX(-120%)';
+            document.documentElement.style.setProperty('--transformBoxSowClick1', 'translateX(0)');
+            document.documentElement.style.setProperty('--transformBoxSowClick2', 'translateX(0)');
+            document.documentElement.style.setProperty('--transformBoxSowClick3', 'translateX(0)');
+        }
+    }
+    show() {
+        if (btnDirectionSidebar.classList.contains('fa-long-arrow-right')) {
+            btnDirectionSidebar.classList.replace('fa-long-arrow-right', 'fa-long-arrow-left');
+            sidebar.style.order = 1;
+            closeBox.style.justifyContent = 'flex-start';
+            boxShowSettings.style.transform = 'translateX(120%)';
+            document.documentElement.style.setProperty('--transformBoxSowClick1', 'translateX(-105px)');
+            document.documentElement.style.setProperty('--transformBoxSowClick2', 'translateX(-85px)');
+            document.documentElement.style.setProperty('--transformBoxSowClick3', 'translateX(-55px)');
+            settingsLoc('directionSidebar', 'fa-long-arrow-right');
+        }
+        else {
+            btnDirectionSidebar.classList.replace('fa-long-arrow-left', 'fa-long-arrow-right')
+            sidebar.style.order = 0;
+            closeBox.style.justifyContent = 'flex-end';
+            boxShowSettings.style.transform = 'translateX(-120%)';
+            document.documentElement.style.setProperty('--transformBoxSowClick1', 'translateX(0)');
+            document.documentElement.style.setProperty('--transformBoxSowClick2', 'translateX(0)');
+            document.documentElement.style.setProperty('--transformBoxSowClick3', 'translateX(0)');
+            settingsLoc('directionSidebar', 'fa-long-arrow-left');
+        }
+    }
+}
+let directionSidebarShow = new PositionDirectionSidebar();
+parentBoxesSettings.querySelector('.boxChooseSidebarDirection button').addEventListener('click', directionSidebarShow.show.bind(directionSidebarShow));
+
 
 
 // class PositionColorbloodColor {
@@ -765,6 +830,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (getLocal.get('BorderBoxes')) {
         let BorderBoxesSendy = new PositionColorBorderBoxes(getLocal.get('BorderBoxes'));
         BorderBoxesSendy.sendy();
+    }
+    if (getLocal.get('directionSidebar')) {
+        let directionSidebarSendy = new PositionDirectionSidebar(getLocal.get('directionSidebar'));
+        directionSidebarSendy.sendy();
     }
 
 })
@@ -1146,7 +1215,7 @@ function concatLove(typeGo) {
     }
 
     concats.forEach(element => {
-        if(element == ''){
+        if (element == '') {
             concats.delete(element);
         }
     })

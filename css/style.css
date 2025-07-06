@@ -3,6 +3,9 @@
     --colorBall: green;
     --colorTail: #ccc;
     --colorHead: #929292;
+    --transformBoxSowClick1: translateX(0);
+    --transformBoxSowClick2: translateX(0);
+    --transformBoxSowClick3: translateX(0);
 }
 
 * {
@@ -39,8 +42,8 @@ body {
     flex-direction: column;
     justify-content: space-between;
     padding: 30px 0 80px;
-    width: 15%;
-    min-width: 133px;
+    /* width: 15%; */
+    min-width: 140px;
 }
 
 /* show Button */
@@ -80,7 +83,7 @@ body {
 }
 
 .thisBoxShow {
-    transform: translateX(0) !important;
+    transform: var(--transformBoxSowClick1) !important;
 }
 
 .closeBox {
@@ -125,7 +128,8 @@ body {
 
 .boxChooseColor label,
 .boxChooseSpeed label,
-.boxChooseSong label {
+.boxChooseSong label,
+.boxChooseSidebarDirection {
     color: var(--textColor);
 }
 
@@ -154,18 +158,31 @@ body {
 }
 
 .boxChooseBoard {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    max-width: 205px;
+    /* display: flex;
+    align-items: center; */
     color: var(--textColor);
+    padding: 10px;
+    display: grid;
+    row-gap: 10px;
+    max-width: 205px;
+}
+
+.boxChooseBoard button {
+    /* width: 100%; */
+    /* background-color: red; */
+    cursor: pointer;
+    height: 20px;
+    width: 100%;
+    border: none;
+    outline: none;
 }
 
 .boxChooseBoard input[type=checkbox] {
-    width: 30px;
-    height: 30px;
-    margin-right: 10px;
-    cursor: pointer;
+    /* width: 30px;
+    height: 30px; */
+    /* margin-right: 10px; */
+    /* cursor: pointer; */
+    display: none;
 }
 
 .boxChooseBoard label {
@@ -188,8 +205,25 @@ body {
     row-gap: 6px;
 }
 
+/* .boxChooseSpeed input[type=range] {
+    width: 100%;
+} */
+
 .boxChooseSpeed input[type=range] {
     width: 100%;
+}
+
+.boxChooseSpeed button {
+    height: 20px;
+    width: 100%;
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+.boxChooseSpeed button:active, 
+.boxChooseSidebarDirection button:active{
+    background-color: #ccc;
 }
 
 .boxChooseSong {
@@ -199,7 +233,7 @@ body {
     row-gap: 10px; */
 }
 
-.boxChooseSong label{
+.boxChooseSong label {
     display: inline-block;
     margin-bottom: 10px;
 }
@@ -268,6 +302,25 @@ body {
     cursor: pointer;
     font-size: 20px;
     color: var(--textColor);
+}
+
+.boxChooseSidebarDirection {
+    padding: 10px;
+    display: grid;
+    row-gap: 10px;
+    max-width: 205px;
+}
+
+.boxChooseSidebarDirection button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20px;
+    width: 100%;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    font-size: 25px;
 }
 
 /* score */

@@ -183,15 +183,30 @@
                             <label for="">Snake speed:</label>
                             <div class="chooseSpeed">
                                 <input type="range" min="50" max="400" value="150">
-                                <input type="button" value="Choose">
+                                <button type="button">
+                                    <!-- <input type="button" value="Choose"> -->
+                                    Choose
+                                </button>
                             </div>
                         </section>
 
                         <section class="boxChooseBoard">
-                            <input id="board" type="checkbox">
                             <label for="board">Do you want the game board to be lined?</label>
+                            <button type="button">
+                                <input id="board" type="checkbox">
+                                Yes
+                            </button>
+                        </section>
+
+                        <section class="boxChooseSidebarDirection">
+                            <label for="">Change the direction of the sidebar frame:</label>
+                            <button type="button">
+                                <i class="fa fa-long-arrow-right"></i>
+                            </button>
                         </section>
                     </form>
+
+
                 </div>
             </section>
 

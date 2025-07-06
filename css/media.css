@@ -2,9 +2,27 @@
 
 @media (min-width: 576px) {}
 
-@media (min-width: 768px) {}
+@media (min-width: 768px) {
+    .sidebar {
+        width: 100%;
+        max-width: 170px;
+    }
 
-@media (min-width: 992px) {}
+    .thisBoxShow {
+        transform: var(--transformBoxSowClick2) !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .sidebar {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .thisBoxShow {
+        transform: var(--transformBoxSowClick3) !important;
+    }
+}
 
 @media (min-width: 1200px) {}
 
