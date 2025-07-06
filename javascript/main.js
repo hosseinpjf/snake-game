@@ -391,7 +391,14 @@ function lose(n) {
     stopGoTop();
 
     setTimeout(() => {
-        window.location.reload();
+        scores[1].textContent = 1;
+        marhale = [];
+        eaten = 0;
+        console.log(marhale);
+        loseOrNot = true;
+        parentBox.innerHTML = '';
+        boxes = [];
+        startGame();
     }, 2000);
 }
 
