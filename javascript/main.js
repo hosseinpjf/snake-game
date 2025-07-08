@@ -174,8 +174,76 @@ bottomBtn.addEventListener('touchmove', (event) => {
 });
 parentBtnHover.addEventListener('touchend', () => {
     isDragging = false;
-    button.style.backgroundColor = 'blue';
 });
+
+
+
+
+
+
+
+
+// const buttons = document.querySelectorAll('.button');
+// let activeButton = null;
+
+// // تابعی برای بررسی اینکه آیا لمس درون دکمه است یا نه
+// function isTouchInsideButton(touch, button) {
+//     const rect = button.getBoundingClientRect();
+//     return (
+//         touch.clientX >= rect.left &&
+//         touch.clientX <= rect.right &&
+//         touch.clientY >= rect.top &&
+//         touch.clientY <= rect.bottom
+//     );
+// }
+
+// // وقتی که لمس شروع می‌شود
+// document.addEventListener('touchstart', (event) => {
+//     const touch = event.touches[0];
+
+//     buttons.forEach(button => {
+//         if (isTouchInsideButton(touch, button)) {
+//             activeButton = button; // دکمه فعال را مشخص می‌کنیم
+//             button.classList.add('active'); // دکمه را فعال می‌کنیم
+//         }
+//     });
+// });
+
+// // وقتی که لمس ادامه دارد
+// document.addEventListener('touchmove', (event) => {
+//     const touch = event.touches[0];
+
+//     buttons.forEach(button => {
+//         if (isTouchInsideButton(touch, button)) {
+//             if (activeButton !== button) {
+//                 if (activeButton) {
+//                     activeButton.classList.remove('active'); // دکمه قبلی غیرفعال می‌شود
+//                 }
+//                 activeButton = button; // دکمه جدید را فعال می‌کنیم
+//                 button.classList.add('active');
+//             }
+//         }
+//     });
+// });
+
+// // وقتی که لمس تمام می‌شود
+// document.addEventListener('touchend', () => {
+//     if (activeButton) {
+//         activeButton.classList.remove('active'); // دکمه فعال غیرفعال می‌شود
+//         activeButton = null; // ریست کردن دکمه فعال
+//     }
+// });
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -457,7 +525,6 @@ function tanzim(n) {
         marhale[i] = marhale[i + 1]
     }
     marhale.splice(eaten, 1, n);
-    console.log(marhale);
 }
 
 function createTail(n) {
