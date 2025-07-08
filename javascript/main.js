@@ -79,6 +79,37 @@ bottomBtn.addEventListener('mousedown', () => {
     move(20);
 });
 
+//////////////////////////////////////////////////////////////////////////// buttons hover
+
+const hoverBtn = Array.from(document.getElementsByClassName('hoverBtn'));
+const leftBtnHover = document.getElementById('leftBtnHover');
+const rightBtnHover = document.getElementById('rightBtnHover');
+const topBtnHover = document.getElementById('topBtnHover');
+const bottomBtnHover = document.getElementById('bottomBtnHover');
+
+function deleteHover() {
+    hoverBtn.forEach(element => {
+        element.classList.remove('backgroundHoverBtn');
+    })
+}
+
+leftBtnHover.addEventListener('mouseenter', () => {
+    deleteHover();
+    move(-1);
+});
+rightBtnHover.addEventListener('mouseenter', () => {
+    deleteHover();
+    move(1);
+});
+topBtnHover.addEventListener('mouseenter', () => {
+    deleteHover();
+    move(-20);
+});
+bottomBtnHover.addEventListener('mouseenter', () => {
+    deleteHover();
+    move(20);
+});
+
 //////////////////////////////////////////////////////////////////////////// addEventListener buttons
 
 
@@ -294,38 +325,50 @@ function move(m) {
     if (loseOrNot) {
         if (endMove !== 1) {
             if (m === -1) {
-                endMove = m;
-                stopGoBottom();
-                stopGoTop();
-                stopGoRight();
-                startGoLeft();
+                setTimeout(() => {
+                    endMove = m;
+                    stopGoBottom();
+                    stopGoTop();
+                    stopGoRight();
+                    startGoLeft();
+                }, speed);
+                leftBtnHover.classList.add('backgroundHoverBtn');
             }
         }
         if (endMove !== -1) {
             if (m === 1) {
-                endMove = m;
-                stopGoBottom();
-                stopGoTop();
-                stopGoLeft();
-                startGoRight();
+                setTimeout(() => {
+                    endMove = m;
+                    stopGoBottom();
+                    stopGoTop();
+                    stopGoLeft();
+                    startGoRight();
+                }, speed);
+                rightBtnHover.classList.add('backgroundHoverBtn');
             }
         }
         if (endMove !== 20) {
             if (m === -20) {
-                endMove = m;
-                stopGoLeft();
-                stopGoRight();
-                stopGoTop();
-                startGoBottom();
+                setTimeout(() => {
+                    endMove = m;
+                    stopGoLeft();
+                    stopGoRight();
+                    stopGoTop();
+                    startGoBottom();
+                }, speed);
+                topBtnHover.classList.add('backgroundHoverBtn');
             }
         }
         if (endMove !== -20) {
             if (m === 20) {
-                endMove = m;
-                stopGoLeft();
-                stopGoRight();
-                stopGoBottom();
-                startGoTop();
+                setTimeout(() => {
+                    endMove = m;
+                    stopGoLeft();
+                    stopGoRight();
+                    stopGoBottom();
+                    startGoTop();
+                }, speed);
+                bottomBtnHover.classList.add('backgroundHoverBtn');
             }
         }
 
@@ -394,11 +437,20 @@ function lose(n) {
         scores[1].textContent = 1;
         marhale = [];
         eaten = 0;
-        console.log(marhale);
+        endMove = 0;
         loseOrNot = true;
+
         parentBox.innerHTML = '';
         boxes = [];
+
         startGame();
+
+        let getLocal = new Map(JSON.parse(localStorage.getItem('personalization')));
+        if (getLocal.get('BorderBoxes')) {
+            let BorderBoxesSendy = new PositionColorBorderBoxes(getLocal.get('BorderBoxes'));
+            BorderBoxesSendy.sendy();
+        }
+
     }, 2000);
 }
 
@@ -528,6 +580,7 @@ parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(6) input[type=but
 
 
 const btns = Array.from(document.getElementsByClassName('btn'));
+const dokme = document.getElementsByClassName('dokme')[0];
 class PositionColorButtonColor {
     constructor(colorLocal) {
         this.colorLocal = colorLocal;
@@ -536,12 +589,20 @@ class PositionColorButtonColor {
         btns.forEach(element => {
             element.style.backgroundColor = this.colorLocal;
         })
+        hoverBtn.forEach(element => {
+            element.style.backgroundColor = this.colorLocal;
+        })
+        dokme.style.backgroundColor = this.colorLocal;
     }
     show() {
         let color = parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(7) input[type=color]').value;
         btns.forEach(element => {
             element.style.backgroundColor = color;
         })
+        hoverBtn.forEach(element => {
+            element.style.backgroundColor = color;
+        })
+        dokme.style.backgroundColor = color;
         settingsLoc('ButtonColor', color);
     }
 }
@@ -557,12 +618,14 @@ class PositionColorButtonIndicatorColor {
         btns.forEach(element => {
             element.style.color = this.colorLocal;
         })
+        document.documentElement.style.setProperty('--backgroundHoverBtn', this.colorLocal);
     }
     show() {
         let color = parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(8) input[type=color]').value;
         btns.forEach(element => {
             element.style.color = color;
         })
+        document.documentElement.style.setProperty('--backgroundHoverBtn', color);
         settingsLoc('ButtonIndicatorColor', color);
     }
 }
@@ -619,6 +682,61 @@ class PositionColorFoodColor {
 }
 let FoodColorShow = new PositionColorFoodColor();
 parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(11) input[type=button]').addEventListener('click', FoodColorShow.show.bind(FoodColorShow));
+
+
+
+
+const parentBtn = document.getElementById('parentBtn');
+const parentBtnHover = document.getElementById('parentBtnHover');
+const selectedShapeBtn = Array.from(parentBoxesSettings.querySelectorAll('.boxChooseBtn button'));
+class PositionShapeBtns {
+    constructor(colorLocal) {
+        this.colorLocal = colorLocal;
+    }
+    sendy() {
+        if (this.colorLocal == 2) {
+            parentBtn.style.display = 'none';
+            parentBtnHover.style.display = 'grid';
+            // selectedShapeBtn[0].style.backgroundColor = '#0078d4';
+            // selectedShapeBtn[1].style.backgroundColor = '#f0f0f0';
+            selectedShapeBtn[0].classList.add('selectedBtns');
+            selectedShapeBtn[1].classList.remove('selectedBtns');
+        }
+        else if (this.colorLocal == 1) {
+            parentBtnHover.style.display = 'none';
+            parentBtn.style.display = 'grid';
+            selectedShapeBtn[1].classList.add('selectedBtns');
+            selectedShapeBtn[0].classList.remove('selectedBtns');
+        }
+    }
+    show(element) {
+        if (element.classList.contains('btnSelectCircle')) {
+            parentBtn.style.display = 'none';
+            parentBtnHover.style.display = 'grid';
+            selectedShapeBtn[0].classList.add('selectedBtns');
+            selectedShapeBtn[1].classList.remove('selectedBtns');
+            settingsLoc('ShapeBtns', 2);
+        }
+        else if (element.classList.contains('btnSelectButtons')) {
+            parentBtnHover.style.display = 'none';
+            parentBtn.style.display = 'grid';
+            selectedShapeBtn[1].classList.add('selectedBtns');
+            selectedShapeBtn[0].classList.remove('selectedBtns');
+            settingsLoc('ShapeBtns', 1);
+        }
+    }
+}
+let ShapeBtnsShow = new PositionShapeBtns();
+selectedShapeBtn.forEach(element => {
+    element.addEventListener('click', ShapeBtnsShow.show.bind(ShapeBtnsShow, element))
+})
+
+
+
+
+
+
+
 
 
 class PositionSnakeSpeed {
@@ -829,6 +947,14 @@ document.addEventListener('DOMContentLoaded', () => {
     //     bloodColorSendy.sendy();
     // }
 
+    if (getLocal.get('ShapeBtns')) {
+        let ShapeBtnsSendy = new PositionShapeBtns(getLocal.get('ShapeBtns'));
+        ShapeBtnsSendy.sendy();
+    }
+    // else{
+    //     parentBtnHover.style.display = 'none';
+    //     selectedShapeBtn[1].classList.add('selectedBtns');
+    // };
     if (getLocal.get('SnakeSpeed')) {
         let SnakeSpeedSendy = new PositionSnakeSpeed(getLocal.get('SnakeSpeed'));
         SnakeSpeedSendy.sendy();
