@@ -79,6 +79,19 @@ bottomBtn.addEventListener('mousedown', () => {
     move(20);
 });
 
+leftBtn.addEventListener('touchstart', () => {
+    move(-1);
+});
+rightBtn.addEventListener('touchstart', () => {
+    move(1);
+});
+topBtn.addEventListener('touchstart', () => {
+    move(-20);
+});
+bottomBtn.addEventListener('touchstart', () => {
+    move(20);
+});
+
 //////////////////////////////////////////////////////////////////////////// buttons hover
 
 const hoverBtn = Array.from(document.getElementsByClassName('hoverBtn'));
