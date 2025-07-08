@@ -60,7 +60,6 @@ window.addEventListener("DOMContentLoaded", handleResize);
 window.addEventListener("resize", debounce(handleResize, 200));
 
 //////////////////////////////////////////////////////////////////////////// buttons
-
 const leftBtn = document.getElementById('leftBtn');
 const rightBtn = document.getElementById('rightBtn');
 const topBtn = document.getElementById('topBtn');
@@ -79,20 +78,8 @@ bottomBtn.addEventListener('mousedown', () => {
     move(20);
 });
 
-leftBtn.addEventListener('touchstart', () => {
-    move(-1);
-});
-rightBtn.addEventListener('touchstart', () => {
-    move(1);
-});
-topBtn.addEventListener('touchstart', () => {
-    move(-20);
-});
-bottomBtn.addEventListener('touchstart', () => {
-    move(20);
-});
-
 //////////////////////////////////////////////////////////////////////////// buttons hover
+const parentBtnHover = document.getElementById('parentBtnHover');
 
 const hoverBtn = Array.from(document.getElementsByClassName('hoverBtn'));
 const leftBtnHover = document.getElementById('leftBtnHover');
@@ -106,22 +93,91 @@ function deleteHover() {
     })
 }
 
-leftBtnHover.addEventListener('mouseenter', () => {
-    deleteHover();
-    move(-1);
+// leftBtnHover.addEventListener('mouseenter', () => {
+//     deleteHover();
+//     move(-1);
+// });
+// rightBtnHover.addEventListener('mouseenter', () => {
+//     deleteHover();
+//     move(1);
+// });
+// topBtnHover.addEventListener('mouseenter', () => {
+//     deleteHover();
+//     move(-20);
+// });
+// bottomBtnHover.addEventListener('mouseenter', () => {
+//     deleteHover();
+//     move(20);
+// });
+
+
+
+let isDragging = false;
+parentBtnHover.addEventListener('touchstart', (event) => {
+    isDragging = true;
 });
-rightBtnHover.addEventListener('mouseenter', () => {
-    deleteHover();
-    move(1);
+leftBtn.addEventListener('touchmove', (event) => {
+    if (isDragging) {
+        const touch = event.touches[0];
+        const buttonRect = button.getBoundingClientRect();
+        if (
+            touch.clientX >= buttonRect.left &&
+            touch.clientX <= buttonRect.right &&
+            touch.clientY >= buttonRect.top &&
+            touch.clientY <= buttonRect.bottom
+        ) {
+            move(-1);
+        }
+    }
 });
-topBtnHover.addEventListener('mouseenter', () => {
-    deleteHover();
-    move(-20);
+rightBtn.addEventListener('touchmove', (event) => {
+    if (isDragging) {
+        const touch = event.touches[0];
+        const buttonRect = button.getBoundingClientRect();
+        if (
+            touch.clientX >= buttonRect.left &&
+            touch.clientX <= buttonRect.right &&
+            touch.clientY >= buttonRect.top &&
+            touch.clientY <= buttonRect.bottom
+        ) {
+            move(1);
+        }
+    }
 });
-bottomBtnHover.addEventListener('mouseenter', () => {
-    deleteHover();
-    move(20);
+topBtn.addEventListener('touchmove', (event) => {
+    if (isDragging) {
+        const touch = event.touches[0];
+        const buttonRect = button.getBoundingClientRect();
+        if (
+            touch.clientX >= buttonRect.left &&
+            touch.clientX <= buttonRect.right &&
+            touch.clientY >= buttonRect.top &&
+            touch.clientY <= buttonRect.bottom
+        ) {
+            move(-20);
+        }
+    }
 });
+bottomBtn.addEventListener('touchmove', (event) => {
+    if (isDragging) {
+        const touch = event.touches[0];
+        const buttonRect = button.getBoundingClientRect();
+        if (
+            touch.clientX >= buttonRect.left &&
+            touch.clientX <= buttonRect.right &&
+            touch.clientY >= buttonRect.top &&
+            touch.clientY <= buttonRect.bottom
+        ) {
+            move(20);
+        }
+    }
+});
+parentBtnHover.addEventListener('touchend', () => {
+    isDragging = false;
+    button.style.backgroundColor = 'blue';
+});
+
+
 
 //////////////////////////////////////////////////////////////////////////// addEventListener buttons
 
@@ -700,7 +756,6 @@ parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(11) input[type=bu
 
 
 const parentBtn = document.getElementById('parentBtn');
-const parentBtnHover = document.getElementById('parentBtnHover');
 const selectedShapeBtn = Array.from(parentBoxesSettings.querySelectorAll('.boxChooseBtn button'));
 class PositionShapeBtns {
     constructor(colorLocal) {
