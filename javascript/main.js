@@ -118,7 +118,7 @@ function deleteHover() {
 
 
 
-document.addEventListener('touchmove', (event) => {
+document.addEventListener('touchmove', event => {
     const touch = event.touches[0];
     const x = touch.clientX;
     const y = touch.clientY;
@@ -151,25 +151,29 @@ document.addEventListener('touchmove', (event) => {
             //         break;
             // }
             if (button.id == 'leftBtnHover') {
+                deleteHover();
                 button.classList.add('backgroundHoverBtn');
                 move(-1);
             }
             if (button.id == 'rightBtnHover') {
+                deleteHover();
                 button.classList.add('backgroundHoverBtn');
                 move(1);
             }
             if (button.id == 'topBtnHover') {
+                deleteHover();
                 button.classList.add('backgroundHoverBtn');
                 move(-20);
             }
             if (button.id == 'bottomBtnHover') {
+                deleteHover();
                 button.classList.add('backgroundHoverBtn');
                 move(20);
             }
         }
-        else {
-            deleteHover();
-        }
+        // else {
+        //     deleteHover();
+        // }
     });
 });
 
