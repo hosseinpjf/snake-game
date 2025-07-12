@@ -93,44 +93,95 @@ function deleteHover() {
     })
 }
 
-leftBtnHover.addEventListener('mouseenter', () => {
-    deleteHover();
-    move(-1);
-});
-rightBtnHover.addEventListener('mouseenter', () => {
-    deleteHover();
-    move(1);
-});
-topBtnHover.addEventListener('mouseenter', () => {
-    deleteHover();
-    move(-20);
-});
-bottomBtnHover.addEventListener('mouseenter', () => {
-    deleteHover();
-    move(20);
-});
+// leftBtnHover.addEventListener('mouseenter', () => {
+//     deleteHover();
+//     move(-1);
+// });
+// rightBtnHover.addEventListener('mouseenter', () => {
+//     deleteHover();
+//     move(1);
+// });
+// topBtnHover.addEventListener('mouseenter', () => {
+//     deleteHover();
+//     move(-20);
+// });
+// bottomBtnHover.addEventListener('mouseenter', () => {
+//     deleteHover();
+//     move(20);
+// });
 
-leftBtnHover.addEventListener('click', () => {
-    deleteHover();
-    move(-1);
-});
-rightBtnHover.addEventListener('click', () => {
-    deleteHover();
-    move(1);
-});
-topBtnHover.addEventListener('click', () => {
-    deleteHover();
-    move(-20);
-});
-bottomBtnHover.addEventListener('click', () => {
-    deleteHover();
-    move(20);
-});
+
+
+
+
+
+// let currentButtonId = null;
+
+// document.addEventListener('touchmove', (event) => {
+//     // event.preventDefault();
+//     const touch = event.touches[0];
+//     const x = touch.clientX;
+//     const y = touch.clientY;
+
+//     let newButtonId = null;
+
+//     hoverBtn.forEach(button => {
+//         const rect = button.getBoundingClientRect();
+//         const inside = (
+//             x >= rect.left &&
+//             x <= rect.right &&
+//             y >= rect.top &&
+//             y <= rect.bottom
+//         );
+
+//         if (inside) {
+//             newButtonId = button.id;
+//         }
+//     });
+
+//     if (newButtonId !== currentButtonId) {
+//         currentButtonId = newButtonId;
+
+//         if (currentButtonId !== null) {
+//             deleteHover();
+
+//             switch (currentButtonId) {
+//                 case 'leftBtnHover':
+//                     move(-1);
+//                     break;
+//                 case 'rightBtnHover':
+//                     move(1);
+//                     break;
+//                 case 'topBtnHover':
+//                     move(-20);
+//                     break;
+//                 case 'bottomBtnHover':
+//                     move(20);
+//                     break;
+//             }
+//         }
+//         else {
+//             deleteHover();
+//         }
+//     }
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 let currentButtonId = null;
 
-document.addEventListener('touchmove', (event) => {
-    // event.preventDefault();
+parentBtnHover.addEventListener('touchmove', event => {
     const touch = event.touches[0];
     const x = touch.clientX;
     const y = touch.clientY;
@@ -154,9 +205,9 @@ document.addEventListener('touchmove', (event) => {
     if (newButtonId !== currentButtonId) {
         currentButtonId = newButtonId;
 
-        if (currentButtonId !== null) {
-            deleteHover();
+        deleteHover();
 
+        if (currentButtonId !== null) {
             switch (currentButtonId) {
                 case 'leftBtnHover':
                     move(-1);
@@ -172,10 +223,10 @@ document.addEventListener('touchmove', (event) => {
                     break;
             }
         }
-        else {
-            deleteHover();
-        }
     }
+});
+parentBtnHover.addEventListener('touchend', () => {
+    currentButtonId = null;
 });
 
 //////////////////////////////////////////////////////////////////////////// addEventListener buttons
