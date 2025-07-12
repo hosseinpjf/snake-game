@@ -150,10 +150,13 @@ parentBtnHover.addEventListener('touchend', () => {
 });
 
 hoverBtn.forEach(button => {
-    button.addEventListener('click', () => {
-        activateButton(button.id);
-    });
-    button.addEventListener('touchstart', () => {
+    // button.addEventListener('click', () => {
+    //     activateButton(button.id);
+    // });
+    // button.addEventListener('touchstart', () => {
+    //     activateButton(button.id);
+    // });
+    button.addEventListener('pointerdown', () => {
         activateButton(button.id);
     });
     button.addEventListener('mouseenter', () => {
