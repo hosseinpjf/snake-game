@@ -110,6 +110,23 @@ bottomBtnHover.addEventListener('mouseenter', () => {
     move(20);
 });
 
+leftBtnHover.addEventListener('click', () => {
+    deleteHover();
+    move(-1);
+});
+rightBtnHover.addEventListener('click', () => {
+    deleteHover();
+    move(1);
+});
+topBtnHover.addEventListener('click', () => {
+    deleteHover();
+    move(-20);
+});
+bottomBtnHover.addEventListener('click', () => {
+    deleteHover();
+    move(20);
+});
+
 let currentButtonId = null;
 
 document.addEventListener('touchmove', (event) => {
