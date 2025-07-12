@@ -152,18 +152,22 @@ document.addEventListener('touchmove', (event) => {
             // }
             if (button.id == 'leftBtnHover') {
                 deleteHover();
+                button.classList.add('backgroundHoverBtn');
                 move(-1);
             }
             if (button.id == 'rightBtnHover') {
                 deleteHover();
+                button.classList.add('backgroundHoverBtn');
                 move(1);
             }
             if (button.id == 'topBtnHover') {
                 deleteHover();
+                button.classList.add('backgroundHoverBtn');
                 move(-20);
             }
             if (button.id == 'bottomBtnHover') {
                 deleteHover();
+                button.classList.add('backgroundHoverBtn');
                 move(20);
             }
         }
@@ -399,7 +403,7 @@ function move(m) {
                     stopGoRight();
                     startGoLeft();
                 }, speed);
-                leftBtnHover.classList.add('backgroundHoverBtn');
+                // leftBtnHover.classList.add('backgroundHoverBtn');
             }
         }
         if (endMove !== -1) {
@@ -411,7 +415,7 @@ function move(m) {
                     stopGoLeft();
                     startGoRight();
                 }, speed);
-                rightBtnHover.classList.add('backgroundHoverBtn');
+                // rightBtnHover.classList.add('backgroundHoverBtn');
             }
         }
         if (endMove !== 20) {
@@ -423,7 +427,7 @@ function move(m) {
                     stopGoTop();
                     startGoBottom();
                 }, speed);
-                topBtnHover.classList.add('backgroundHoverBtn');
+                // topBtnHover.classList.add('backgroundHoverBtn');
             }
         }
         if (endMove !== -20) {
@@ -435,7 +439,7 @@ function move(m) {
                     stopGoBottom();
                     startGoTop();
                 }, speed);
-                bottomBtnHover.classList.add('backgroundHoverBtn');
+                // bottomBtnHover.classList.add('backgroundHoverBtn');
             }
         }
 
