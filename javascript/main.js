@@ -159,7 +159,7 @@ document.addEventListener('touchmove', (event) => {
             deleteHover();
         }
     }
-}, { passive: false });
+});
 
 //////////////////////////////////////////////////////////////////////////// addEventListener buttons
 
