@@ -117,11 +117,58 @@ function deleteHover() {
 
 
 
+// document.addEventListener('touchmove', event => {
+//     event.preventDefault();
+//     const touch = event.touches[0];
+//     const x = touch.clientX;
+//     const y = touch.clientY;
 
-document.addEventListener('touchmove', event => {
+//     let foundHover = false;
+
+//     hoverBtn.forEach(button => {
+//         const rect = button.getBoundingClientRect();
+//         const inside = (
+//             x >= rect.left &&
+//             x <= rect.right &&
+//             y >= rect.top &&
+//             y <= rect.bottom
+//         );
+//         if (inside) {
+//             foundHover = true;
+//             switch (button.id) {
+//                 case 'leftBtnHover':
+//                     deleteHover();
+//                     move(-1);
+//                     break;
+//                 case 'rightBtnHover':
+//                     deleteHover();
+//                     move(1);
+//                     break;
+//                 case 'topBtnHover':
+//                     deleteHover();
+//                     move(-20);
+//                     break;
+//                 case 'bottomBtnHover':
+//                     deleteHover();
+//                     move(20);
+//                     break;
+//             }
+//         }
+//         else {
+//             deleteHover();
+//         }
+//     });
+// });
+
+
+
+document.addEventListener('touchmove', (event) => {
+    event.preventDefault();
     const touch = event.touches[0];
     const x = touch.clientX;
     const y = touch.clientY;
+
+    let found = false;
 
     hoverBtn.forEach(button => {
         const rect = button.getBoundingClientRect();
@@ -131,55 +178,54 @@ document.addEventListener('touchmove', event => {
             y >= rect.top &&
             y <= rect.bottom
         );
+
         if (inside) {
-            // switch (button.id) {
-            //     case 'leftBtnHover':
-            //         deleteHover();
-            //         move(-1);
-            //         break;
-            //     case 'rightBtnHover':
-            //         deleteHover();
-            //         move(1);
-            //         break;
-            //     case 'topBtnHover':
-            //         deleteHover();
-            //         move(-20);
-            //         break;
-            //     case 'bottomBtnHover':
-            //         deleteHover();
-            //         move(20);
-            //         break;
-            // }
-            if (button.id == 'leftBtnHover') {
-                deleteHover();
-                // button.classList.add('backgroundHoverBtn');
-                move(-1);
-            }
-            if (button.id == 'rightBtnHover') {
-                deleteHover();
-                // button.classList.add('backgroundHoverBtn');
-                move(1);
-            }
-            if (button.id == 'topBtnHover') {
-                deleteHover();
-                // button.classList.add('backgroundHoverBtn');
-                move(-20);
-            }
-            if (button.id == 'bottomBtnHover') {
-                deleteHover();
-                // button.classList.add('backgroundHoverBtn');
-                move(20);
+            found = true;
+            switch (button.id) {
+                case 'leftBtnHover':
+                    deleteHover();
+                    move(-1);
+                    break;
+                case 'rightBtnHover':
+                    deleteHover();
+                    move(1);
+                    break;
+                case 'topBtnHover':
+                    deleteHover();
+                    move(-20);
+                    break;
+                case 'bottomBtnHover':
+                    deleteHover();
+                    move(20);
+                    break;
             }
         }
-        // else {
-        //     deleteHover();
-        // }
     });
-});
+
+    if (!found) {
+        deleteHover();
+    }
+
+}, { passive: false });
 
 
 
-
+//  if (button.id == 'leftBtnHover') {
+//         deleteHover();
+//         move(-1);
+//     }
+//     if (button.id == 'rightBtnHover') {
+//         deleteHover();
+//         move(1);
+//     }
+//     if (button.id == 'topBtnHover') {
+//         deleteHover();
+//         move(-20);
+//     }
+//     if (button.id == 'bottomBtnHover') {
+//         deleteHover();
+//         move(20);
+//     }
 
 //////////////////////////////////////////////////////////////////////////// addEventListener buttons
 
