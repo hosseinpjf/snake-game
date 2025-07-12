@@ -93,26 +93,28 @@ function deleteHover() {
     })
 }
 
-// leftBtnHover.addEventListener('mouseenter', () => {
-//     deleteHover();
-//     move(-1);
-// });
-// rightBtnHover.addEventListener('mouseenter', () => {
-//     deleteHover();
-//     move(1);
-// });
-// topBtnHover.addEventListener('mouseenter', () => {
-//     deleteHover();
-//     move(-20);
-// });
-// bottomBtnHover.addEventListener('mouseenter', () => {
-//     deleteHover();
-//     move(20);
-// });
-
 let currentButtonId = null;
+function activateButton(id) {
+    deleteHover();
+    currentButtonId = id;
 
-parentBtnHover.addEventListener('touchmove', event => {
+    switch (id) {
+        case 'leftBtnHover':
+            move(-1);
+            break;
+        case 'rightBtnHover':
+            move(1);
+            break;
+        case 'topBtnHover':
+            move(-20);
+            break;
+        case 'bottomBtnHover':
+            move(20);
+            break;
+    }
+}
+
+parentBtnHover.addEventListener('touchmove', (event) => {
     const touch = event.touches[0];
     const x = touch.clientX;
     const y = touch.clientY;
@@ -134,34 +136,32 @@ parentBtnHover.addEventListener('touchmove', event => {
     });
 
     if (newButtonId !== currentButtonId) {
-        currentButtonId = newButtonId;
-
-        deleteHover();
-
-        if (currentButtonId !== null) {
-            switch (currentButtonId) {
-                case 'leftBtnHover':
-                    move(-1);
-                    break;
-                case 'rightBtnHover':
-                    move(1);
-                    break;
-                case 'topBtnHover':
-                    move(-20);
-                    break;
-                case 'bottomBtnHover':
-                    move(20);
-                    break;
-            }
+        if (newButtonId !== null) {
+            activateButton(newButtonId);
+        } else {
+            deleteHover();
+            currentButtonId = null;
         }
     }
 });
+
 parentBtnHover.addEventListener('touchend', () => {
     currentButtonId = null;
 });
 
-//////////////////////////////////////////////////////////////////////////// addEventListener buttons
+hoverBtn.forEach(button => {
+    button.addEventListener('click', () => {
+        activateButton(button.id);
+    });
+    button.addEventListener('touchstart', () => {
+        activateButton(button.id);
+    });
+    button.addEventListener('mouseenter', () => {
+        activateButton(button.id);
+    });
+});
 
+//////////////////////////////////////////////////////////////////////////// addEventListener buttons
 
 let goInterValid, speed = 150;
 
@@ -498,7 +498,7 @@ function lose(n) {
         if (getLocal.get('BorderBoxes')) {
             let BorderBoxesSendy = new PositionColorBorderBoxes(getLocal.get('BorderBoxes'));
             BorderBoxesSendy.sendy();
-        }
+        };
 
         deleteHover();
 
