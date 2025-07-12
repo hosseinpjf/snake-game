@@ -112,136 +112,50 @@ function deleteHover() {
 
 
 
-let isDragging = false;
-parentBtnHover.addEventListener('touchstart', (event) => {
-    isDragging = true;
-});
-leftBtn.addEventListener('touchmove', (event) => {
-    if (isDragging) {
-        const touch = event.touches[0];
-        const buttonRect = button.getBoundingClientRect();
-        if (
-            touch.clientX >= buttonRect.left &&
-            touch.clientX <= buttonRect.right &&
-            touch.clientY >= buttonRect.top &&
-            touch.clientY <= buttonRect.bottom
-        ) {
-            move(-1);
+
+
+
+
+
+
+document.addEventListener('touchmove', (event) => {
+    const touch = event.touches[0];
+    const x = touch.clientX;
+    const y = touch.clientY;
+
+    hoverBtn.forEach(button => {
+        const rect = button.getBoundingClientRect();
+        const inside = (
+            x >= rect.left &&
+            x <= rect.right &&
+            y >= rect.top &&
+            y <= rect.bottom
+        );
+        if (inside) {
+            switch (button.id) {
+                case 'leftBtnHover':
+                    deleteHover();
+                    move(-1);
+                    break;
+                case 'rightBtnHover':
+                    deleteHover();
+                    move(1);
+                    break;
+                case 'topBtnHover':
+                    deleteHover();
+                    move(-20);
+                    break;
+                case 'bottomBtnHover':
+                    deleteHover();
+                    move(20);
+                    break;
+            }
         }
-    }
-});
-rightBtn.addEventListener('touchmove', (event) => {
-    if (isDragging) {
-        const touch = event.touches[0];
-        const buttonRect = button.getBoundingClientRect();
-        if (
-            touch.clientX >= buttonRect.left &&
-            touch.clientX <= buttonRect.right &&
-            touch.clientY >= buttonRect.top &&
-            touch.clientY <= buttonRect.bottom
-        ) {
-            move(1);
+        else {
+            deleteHover();
         }
-    }
+    });
 });
-topBtn.addEventListener('touchmove', (event) => {
-    if (isDragging) {
-        const touch = event.touches[0];
-        const buttonRect = button.getBoundingClientRect();
-        if (
-            touch.clientX >= buttonRect.left &&
-            touch.clientX <= buttonRect.right &&
-            touch.clientY >= buttonRect.top &&
-            touch.clientY <= buttonRect.bottom
-        ) {
-            move(-20);
-        }
-    }
-});
-bottomBtn.addEventListener('touchmove', (event) => {
-    if (isDragging) {
-        const touch = event.touches[0];
-        const buttonRect = button.getBoundingClientRect();
-        if (
-            touch.clientX >= buttonRect.left &&
-            touch.clientX <= buttonRect.right &&
-            touch.clientY >= buttonRect.top &&
-            touch.clientY <= buttonRect.bottom
-        ) {
-            move(20);
-        }
-    }
-});
-parentBtnHover.addEventListener('touchend', () => {
-    isDragging = false;
-});
-
-
-
-
-
-
-
-
-// const buttons = document.querySelectorAll('.button');
-// let activeButton = null;
-
-// // تابعی برای بررسی اینکه آیا لمس درون دکمه است یا نه
-// function isTouchInsideButton(touch, button) {
-//     const rect = button.getBoundingClientRect();
-//     return (
-//         touch.clientX >= rect.left &&
-//         touch.clientX <= rect.right &&
-//         touch.clientY >= rect.top &&
-//         touch.clientY <= rect.bottom
-//     );
-// }
-
-// // وقتی که لمس شروع می‌شود
-// document.addEventListener('touchstart', (event) => {
-//     const touch = event.touches[0];
-
-//     buttons.forEach(button => {
-//         if (isTouchInsideButton(touch, button)) {
-//             activeButton = button; // دکمه فعال را مشخص می‌کنیم
-//             button.classList.add('active'); // دکمه را فعال می‌کنیم
-//         }
-//     });
-// });
-
-// // وقتی که لمس ادامه دارد
-// document.addEventListener('touchmove', (event) => {
-//     const touch = event.touches[0];
-
-//     buttons.forEach(button => {
-//         if (isTouchInsideButton(touch, button)) {
-//             if (activeButton !== button) {
-//                 if (activeButton) {
-//                     activeButton.classList.remove('active'); // دکمه قبلی غیرفعال می‌شود
-//                 }
-//                 activeButton = button; // دکمه جدید را فعال می‌کنیم
-//                 button.classList.add('active');
-//             }
-//         }
-//     });
-// });
-
-// // وقتی که لمس تمام می‌شود
-// document.addEventListener('touchend', () => {
-//     if (activeButton) {
-//         activeButton.classList.remove('active'); // دکمه فعال غیرفعال می‌شود
-//         activeButton = null; // ریست کردن دکمه فعال
-//     }
-// });
-
-
-
-
-
-
-
-
-
 
 
 
