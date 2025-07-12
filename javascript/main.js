@@ -93,90 +93,27 @@ function deleteHover() {
     })
 }
 
-// leftBtnHover.addEventListener('mouseenter', () => {
-//     deleteHover();
-//     move(-1);
-// });
-// rightBtnHover.addEventListener('mouseenter', () => {
-//     deleteHover();
-//     move(1);
-// });
-// topBtnHover.addEventListener('mouseenter', () => {
-//     deleteHover();
-//     move(-20);
-// });
-// bottomBtnHover.addEventListener('mouseenter', () => {
-//     deleteHover();
-//     move(20);
-// });
-
-
-// document.addEventListener('touchmove', event => {
-//     event.preventDefault();
-//     const touch = event.touches[0];
-//     const x = touch.clientX;
-//     const y = touch.clientY;
-
-//     let foundBtnHover = false;
-//     // let lastActivated = {
-//     //     checkLeftBtn: null,
-//     //     checkRightBtn: null,
-//     //     checkTopBtn: null,
-//     //     checkBottomBtn: null
-//     // }
-
-//     hoverBtn.forEach(button => {
-//         const rect = button.getBoundingClientRect();
-//         const inside = (
-//             x >= rect.left &&
-//             x <= rect.right &&
-//             y >= rect.top &&
-//             y <= rect.bottom
-//         );
-
-//         if (inside) {
-//             foundBtnHover = true;
-//             switch (button.id) {
-//                 case 'leftBtnHover':
-//                     deleteHover();
-//                     move(-1);
-//                     break;
-//                 case 'rightBtnHover':
-//                     deleteHover();
-//                     move(1);
-//                     break;
-//                 case 'topBtnHover':
-//                     deleteHover();
-//                     move(-20);
-//                     break;
-//                 case 'bottomBtnHover':
-//                     deleteHover();
-//                     move(20);
-//                     break;
-//             }
-//         }
-//     });
-
-//     if (!foundBtnHover) {
-//         deleteHover();
-//     }
-
-// }, { passive: false });
-
-
-
-
-
-
-
-
-
-
+leftBtnHover.addEventListener('mouseenter', () => {
+    deleteHover();
+    move(-1);
+});
+rightBtnHover.addEventListener('mouseenter', () => {
+    deleteHover();
+    move(1);
+});
+topBtnHover.addEventListener('mouseenter', () => {
+    deleteHover();
+    move(-20);
+});
+bottomBtnHover.addEventListener('mouseenter', () => {
+    deleteHover();
+    move(20);
+});
 
 let currentButtonId = null;
 
 document.addEventListener('touchmove', (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     const touch = event.touches[0];
     const x = touch.clientX;
     const y = touch.clientY;
