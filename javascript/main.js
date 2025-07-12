@@ -93,22 +93,22 @@ function deleteHover() {
     })
 }
 
-leftBtnHover.addEventListener('mouseenter', () => {
-    deleteHover();
-    move(-1);
-});
-rightBtnHover.addEventListener('mouseenter', () => {
-    deleteHover();
-    move(1);
-});
-topBtnHover.addEventListener('mouseenter', () => {
-    deleteHover();
-    move(-20);
-});
-bottomBtnHover.addEventListener('mouseenter', () => {
-    deleteHover();
-    move(20);
-});
+// leftBtnHover.addEventListener('mouseenter', () => {
+//     deleteHover();
+//     move(-1);
+// });
+// rightBtnHover.addEventListener('mouseenter', () => {
+//     deleteHover();
+//     move(1);
+// });
+// topBtnHover.addEventListener('mouseenter', () => {
+//     deleteHover();
+//     move(-20);
+// });
+// bottomBtnHover.addEventListener('mouseenter', () => {
+//     deleteHover();
+//     move(20);
+// });
 
 let currentButtonId = null;
 
