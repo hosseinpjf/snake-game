@@ -132,23 +132,39 @@ document.addEventListener('touchmove', (event) => {
             y <= rect.bottom
         );
         if (inside) {
-            switch (button.id) {
-                case 'leftBtnHover':
-                    deleteHover();
-                    move(-1);
-                    break;
-                case 'rightBtnHover':
-                    deleteHover();
-                    move(1);
-                    break;
-                case 'topBtnHover':
-                    deleteHover();
-                    move(-20);
-                    break;
-                case 'bottomBtnHover':
-                    deleteHover();
-                    move(20);
-                    break;
+            // switch (button.id) {
+            //     case 'leftBtnHover':
+            //         deleteHover();
+            //         move(-1);
+            //         break;
+            //     case 'rightBtnHover':
+            //         deleteHover();
+            //         move(1);
+            //         break;
+            //     case 'topBtnHover':
+            //         deleteHover();
+            //         move(-20);
+            //         break;
+            //     case 'bottomBtnHover':
+            //         deleteHover();
+            //         move(20);
+            //         break;
+            // }
+            if (button.id == 'leftBtnHover') {
+                deleteHover();
+                move(-1);
+            }
+            if (button.id == 'rightBtnHover') {
+                deleteHover();
+                move(1);
+            }
+            if (button.id == 'topBtnHover') {
+                deleteHover();
+                move(-20);
+            }
+            if (button.id == 'bottomBtnHover') {
+                deleteHover();
+                move(20);
             }
         }
         else {
