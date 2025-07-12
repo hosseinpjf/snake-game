@@ -93,91 +93,22 @@ function deleteHover() {
     })
 }
 
-// leftBtnHover.addEventListener('mouseenter', () => {
-//     deleteHover();
-//     move(-1);
-// });
-// rightBtnHover.addEventListener('mouseenter', () => {
-//     deleteHover();
-//     move(1);
-// });
-// topBtnHover.addEventListener('mouseenter', () => {
-//     deleteHover();
-//     move(-20);
-// });
-// bottomBtnHover.addEventListener('mouseenter', () => {
-//     deleteHover();
-//     move(20);
-// });
-
-
-
-
-
-
-// let currentButtonId = null;
-
-// document.addEventListener('touchmove', (event) => {
-//     // event.preventDefault();
-//     const touch = event.touches[0];
-//     const x = touch.clientX;
-//     const y = touch.clientY;
-
-//     let newButtonId = null;
-
-//     hoverBtn.forEach(button => {
-//         const rect = button.getBoundingClientRect();
-//         const inside = (
-//             x >= rect.left &&
-//             x <= rect.right &&
-//             y >= rect.top &&
-//             y <= rect.bottom
-//         );
-
-//         if (inside) {
-//             newButtonId = button.id;
-//         }
-//     });
-
-//     if (newButtonId !== currentButtonId) {
-//         currentButtonId = newButtonId;
-
-//         if (currentButtonId !== null) {
-//             deleteHover();
-
-//             switch (currentButtonId) {
-//                 case 'leftBtnHover':
-//                     move(-1);
-//                     break;
-//                 case 'rightBtnHover':
-//                     move(1);
-//                     break;
-//                 case 'topBtnHover':
-//                     move(-20);
-//                     break;
-//                 case 'bottomBtnHover':
-//                     move(20);
-//                     break;
-//             }
-//         }
-//         else {
-//             deleteHover();
-//         }
-//     }
-// });
-
-
-
-
-
-
-
-
-
-
-
-
-
+leftBtnHover.addEventListener('mouseenter', () => {
+    deleteHover();
+    move(-1);
+});
+rightBtnHover.addEventListener('mouseenter', () => {
+    deleteHover();
+    move(1);
+});
+topBtnHover.addEventListener('mouseenter', () => {
+    deleteHover();
+    move(-20);
+});
+bottomBtnHover.addEventListener('mouseenter', () => {
+    deleteHover();
+    move(20);
+});
 
 let currentButtonId = null;
 
@@ -568,6 +499,8 @@ function lose(n) {
             let BorderBoxesSendy = new PositionColorBorderBoxes(getLocal.get('BorderBoxes'));
             BorderBoxesSendy.sendy();
         }
+
+        deleteHover();
 
     }, 2000);
 }
