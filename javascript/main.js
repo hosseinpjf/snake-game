@@ -152,22 +152,22 @@ document.addEventListener('touchmove', event => {
             // }
             if (button.id == 'leftBtnHover') {
                 deleteHover();
-                button.classList.add('backgroundHoverBtn');
+                // button.classList.add('backgroundHoverBtn');
                 move(-1);
             }
             if (button.id == 'rightBtnHover') {
                 deleteHover();
-                button.classList.add('backgroundHoverBtn');
+                // button.classList.add('backgroundHoverBtn');
                 move(1);
             }
             if (button.id == 'topBtnHover') {
                 deleteHover();
-                button.classList.add('backgroundHoverBtn');
+                // button.classList.add('backgroundHoverBtn');
                 move(-20);
             }
             if (button.id == 'bottomBtnHover') {
                 deleteHover();
-                button.classList.add('backgroundHoverBtn');
+                // button.classList.add('backgroundHoverBtn');
                 move(20);
             }
         }
@@ -396,50 +396,50 @@ function move(m) {
     if (loseOrNot) {
         if (endMove !== 1) {
             if (m === -1) {
-                setTimeout(() => {
-                    endMove = m;
-                    stopGoBottom();
-                    stopGoTop();
-                    stopGoRight();
-                    startGoLeft();
-                }, speed);
-                // leftBtnHover.classList.add('backgroundHoverBtn');
+                // setTimeout(() => {
+                endMove = m;
+                stopGoBottom();
+                stopGoTop();
+                stopGoRight();
+                startGoLeft();
+                // }, speed);
+                leftBtnHover.classList.add('backgroundHoverBtn');
             }
         }
         if (endMove !== -1) {
             if (m === 1) {
-                setTimeout(() => {
-                    endMove = m;
-                    stopGoBottom();
-                    stopGoTop();
-                    stopGoLeft();
-                    startGoRight();
-                }, speed);
-                // rightBtnHover.classList.add('backgroundHoverBtn');
+                // setTimeout(() => {
+                endMove = m;
+                stopGoBottom();
+                stopGoTop();
+                stopGoLeft();
+                startGoRight();
+                // }, speed);
+                rightBtnHover.classList.add('backgroundHoverBtn');
             }
         }
         if (endMove !== 20) {
             if (m === -20) {
-                setTimeout(() => {
-                    endMove = m;
-                    stopGoLeft();
-                    stopGoRight();
-                    stopGoTop();
-                    startGoBottom();
-                }, speed);
-                // topBtnHover.classList.add('backgroundHoverBtn');
+                // setTimeout(() => {
+                endMove = m;
+                stopGoLeft();
+                stopGoRight();
+                stopGoTop();
+                startGoBottom();
+                // }, speed);
+                topBtnHover.classList.add('backgroundHoverBtn');
             }
         }
         if (endMove !== -20) {
             if (m === 20) {
-                setTimeout(() => {
-                    endMove = m;
-                    stopGoLeft();
-                    stopGoRight();
-                    stopGoBottom();
-                    startGoTop();
-                }, speed);
-                // bottomBtnHover.classList.add('backgroundHoverBtn');
+                // setTimeout(() => {
+                endMove = m;
+                stopGoLeft();
+                stopGoRight();
+                stopGoBottom();
+                startGoTop();
+                // }, speed);
+                bottomBtnHover.classList.add('backgroundHoverBtn');
             }
         }
 
