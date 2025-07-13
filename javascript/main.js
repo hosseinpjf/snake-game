@@ -66,19 +66,15 @@ const topBtn = document.getElementById('topBtn');
 const bottomBtn = document.getElementById('bottomBtn');
 
 leftBtn.addEventListener('mousedown', () => {
-    deleteHover();
     move(-1);
 });
 rightBtn.addEventListener('mousedown', () => {
-    deleteHover();
     move(1);
 });
 topBtn.addEventListener('mousedown', () => {
-    deleteHover();
     move(-20);
 });
 bottomBtn.addEventListener('mousedown', () => {
-    deleteHover();
     move(20);
 });
 
@@ -745,8 +741,6 @@ class PositionShapeBtns {
         if (this.colorLocal == 2) {
             parentBtn.style.display = 'none';
             parentBtnHover.style.display = 'grid';
-            // selectedShapeBtn[0].style.backgroundColor = '#0078d4';
-            // selectedShapeBtn[1].style.backgroundColor = '#f0f0f0';
             selectedShapeBtn[0].classList.add('selectedBtns');
             selectedShapeBtn[1].classList.remove('selectedBtns');
         }
@@ -763,6 +757,7 @@ class PositionShapeBtns {
             parentBtnHover.style.display = 'grid';
             selectedShapeBtn[0].classList.add('selectedBtns');
             selectedShapeBtn[1].classList.remove('selectedBtns');
+            deleteHover();
             settingsLoc('ShapeBtns', 2);
         }
         else if (element.classList.contains('btnSelectButtons')) {
@@ -778,14 +773,6 @@ let ShapeBtnsShow = new PositionShapeBtns();
 selectedShapeBtn.forEach(element => {
     element.addEventListener('click', ShapeBtnsShow.show.bind(ShapeBtnsShow, element))
 })
-
-
-
-
-
-
-
-
 
 class PositionSnakeSpeed {
     constructor(colorLocal) {
