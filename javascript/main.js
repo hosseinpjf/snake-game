@@ -66,15 +66,19 @@ const topBtn = document.getElementById('topBtn');
 const bottomBtn = document.getElementById('bottomBtn');
 
 leftBtn.addEventListener('mousedown', () => {
+    deleteHover();
     move(-1);
 });
 rightBtn.addEventListener('mousedown', () => {
+    deleteHover();
     move(1);
 });
 topBtn.addEventListener('mousedown', () => {
+    deleteHover();
     move(-20);
 });
 bottomBtn.addEventListener('mousedown', () => {
+    deleteHover();
     move(20);
 });
 
