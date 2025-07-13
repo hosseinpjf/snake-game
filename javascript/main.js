@@ -114,7 +114,8 @@ function activateButton(id) {
     }
 }
 
-parentBtnHover.addEventListener('touchmove', (event) => {
+parentBtnHover.addEventListener('touchmove', event => {
+    event.preventDefault();
     const touch = event.touches[0];
     const x = touch.clientX;
     const y = touch.clientY;
@@ -150,15 +151,16 @@ parentBtnHover.addEventListener('touchend', () => {
 });
 
 hoverBtn.forEach(button => {
-    // button.addEventListener('click', () => {
-    //     activateButton(button.id);
-    // });
-    // button.addEventListener('touchstart', () => {
-    //     activateButton(button.id);
-    // });
-    button.addEventListener('pointerdown', () => {
+    button.addEventListener('click', () => {
         activateButton(button.id);
     });
+    button.addEventListener('touchstart', event => {
+        event.preventDefault();
+        activateButton(button.id);
+    });
+    // button.addEventListener('pointerdown', () => {
+    //     activateButton(button.id);
+    // });
     button.addEventListener('mouseenter', () => {
         activateButton(button.id);
     });
