@@ -93,7 +93,7 @@ function deleteHover() {
     })
 }
 
-let currentButtonId = null;
+let currentButtonId = null, endMoveHover = 0;
 function activateButton(id) {
     deleteHover();
     currentButtonId = id;
@@ -101,19 +101,31 @@ function activateButton(id) {
     switch (id) {
         case 'leftBtnHover':
             move(-1);
-            leftBtnHover.classList.add('backgroundHoverBtn');
+            if(endMoveHover != 1){
+                leftBtnHover.classList.add('backgroundHoverBtn');
+                endMoveHover = -1;
+            }
             break;
         case 'rightBtnHover':
             move(1);
-            rightBtnHover.classList.add('backgroundHoverBtn');
+            if(endMoveHover != -1){
+                rightBtnHover.classList.add('backgroundHoverBtn');
+                endMoveHover = 1;
+            }
             break;
         case 'topBtnHover':
             move(-20);
-            topBtnHover.classList.add('backgroundHoverBtn');
+            if(endMoveHover != 20){
+                topBtnHover.classList.add('backgroundHoverBtn');
+                endMoveHover = -20;
+            }
             break;
         case 'bottomBtnHover':
             move(20);
-            bottomBtnHover.classList.add('backgroundHoverBtn');
+            if(endMoveHover != -20){
+                bottomBtnHover.classList.add('backgroundHoverBtn');
+                endMoveHover = 20;
+            }
             break;
     }
 }
@@ -494,6 +506,7 @@ function lose(n) {
             BorderBoxesSendy.sendy();
         };
 
+        endMoveHover = 0;
         deleteHover();
 
     }, 2000);
