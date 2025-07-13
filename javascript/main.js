@@ -765,6 +765,7 @@ class PositionShapeBtns {
             parentBtn.style.display = 'grid';
             selectedShapeBtn[1].classList.add('selectedBtns');
             selectedShapeBtn[0].classList.remove('selectedBtns');
+            deleteHover();
             settingsLoc('ShapeBtns', 1);
         }
     }
