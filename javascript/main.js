@@ -101,15 +101,19 @@ function activateButton(id) {
     switch (id) {
         case 'leftBtnHover':
             move(-1);
+            leftBtnHover.classList.add('backgroundHoverBtn');
             break;
         case 'rightBtnHover':
             move(1);
+            rightBtnHover.classList.add('backgroundHoverBtn');
             break;
         case 'topBtnHover':
             move(-20);
+            topBtnHover.classList.add('backgroundHoverBtn');
             break;
         case 'bottomBtnHover':
             move(20);
+            bottomBtnHover.classList.add('backgroundHoverBtn');
             break;
     }
 }
@@ -158,9 +162,6 @@ hoverBtn.forEach(button => {
         event.preventDefault();
         activateButton(button.id);
     });
-    // button.addEventListener('pointerdown', () => {
-    //     activateButton(button.id);
-    // });
     button.addEventListener('mouseenter', () => {
         activateButton(button.id);
     });
@@ -380,50 +381,38 @@ function move(m) {
     if (loseOrNot) {
         if (endMove !== 1) {
             if (m === -1) {
-                // setTimeout(() => {
                 endMove = m;
                 stopGoBottom();
                 stopGoTop();
                 stopGoRight();
                 startGoLeft();
-                // }, speed);
-                leftBtnHover.classList.add('backgroundHoverBtn');
             }
         }
         if (endMove !== -1) {
             if (m === 1) {
-                // setTimeout(() => {
                 endMove = m;
                 stopGoBottom();
                 stopGoTop();
                 stopGoLeft();
                 startGoRight();
-                // }, speed);
-                rightBtnHover.classList.add('backgroundHoverBtn');
             }
         }
         if (endMove !== 20) {
             if (m === -20) {
-                // setTimeout(() => {
                 endMove = m;
                 stopGoLeft();
                 stopGoRight();
                 stopGoTop();
                 startGoBottom();
-                // }, speed);
-                topBtnHover.classList.add('backgroundHoverBtn');
             }
         }
         if (endMove !== -20) {
             if (m === 20) {
-                // setTimeout(() => {
                 endMove = m;
                 stopGoLeft();
                 stopGoRight();
                 stopGoBottom();
                 startGoTop();
-                // }, speed);
-                bottomBtnHover.classList.add('backgroundHoverBtn');
             }
         }
 
