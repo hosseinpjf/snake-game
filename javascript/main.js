@@ -172,7 +172,7 @@ hoverBtn.forEach(button => {
 const containerBtnBall = document.getElementsByClassName('containerBtnBall')[0];
 const parentBallMove = document.getElementsByClassName('parentBallMove')[0];
 const ballMove = document.getElementsByClassName('ballMove')[0];
-const ballBtns = Array.from(document.getElementsByClassName('ballBtn'));
+const ballBtns = document.querySelectorAll('.ballBtn');
 
 let currentActiveId = null;
 
@@ -192,11 +192,9 @@ function handleBallMove(event) {
     const relativeX = x - containerRect.left;
     const relativeY = y - containerRect.top;
 
-    // حرکت دادن parentBallMove که درونش ballMove وجود داره
     parentBallMove.style.left = `${relativeX}px`;
     parentBallMove.style.top = `${relativeY}px`;
 
-    // بررسی برخورد بر اساس محل واقعی ballMove
     const ballRect = ballMove.getBoundingClientRect();
 
     let newActiveId = null;
@@ -205,7 +203,6 @@ function handleBallMove(event) {
     ballBtns.forEach(btn => {
         const btnRect = btn.getBoundingClientRect();
 
-        // شرط برخورد بر اساس مستطیل‌ها
         const overlap =
             ballRect.left < btnRect.right &&
             ballRect.right > btnRect.left &&
@@ -218,15 +215,12 @@ function handleBallMove(event) {
         }
     });
 
-    if (newActiveId !== currentActiveId) {
+    if (newActiveId && newActiveId !== currentActiveId) {
         currentActiveId = newActiveId;
-        if (newActiveButton) {
-            newActiveButton.click();
-        }
+        newActiveButton.click();
     }
 }
 
-// افزودن لیسنر روی parentBallMove
 parentBallMove.addEventListener('touchmove', handleBallMove);
 parentBallMove.addEventListener('mousemove', handleBallMove);
 parentBallMove.addEventListener('pointermove', handleBallMove);
