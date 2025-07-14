@@ -167,6 +167,72 @@ hoverBtn.forEach(button => {
     });
 });
 
+//////////////////////////////////////////////////////////////////////////// buttons ball
+
+const containerBtnBall = document.getElementsByClassName('containerBtnBall')[0];
+const parentBallMove = document.getElementsByClassName('parentBallMove')[0];
+const ballMove = document.getElementsByClassName('ballMove')[0];
+const ballBtns = Array.from(document.getElementsByClassName('ballBtn'));
+
+let currentActiveId = null;
+
+function handleBallMove(event) {
+    let x, y;
+
+    if (event.type.startsWith('touch')) {
+        const touch = event.touches[0];
+        x = touch.clientX;
+        y = touch.clientY;
+    } else {
+        x = event.clientX;
+        y = event.clientY;
+    }
+
+    const containerRect = containerBtnBall.getBoundingClientRect();
+    const relativeX = x - containerRect.left;
+    const relativeY = y - containerRect.top;
+
+    // حرکت دادن parentBallMove که درونش ballMove وجود داره
+    parentBallMove.style.left = `${relativeX}px`;
+    parentBallMove.style.top = `${relativeY}px`;
+
+    // بررسی برخورد بر اساس محل واقعی ballMove
+    const ballRect = ballMove.getBoundingClientRect();
+
+    let newActiveId = null;
+    let newActiveButton = null;
+
+    ballBtns.forEach(btn => {
+        const btnRect = btn.getBoundingClientRect();
+
+        // شرط برخورد بر اساس مستطیل‌ها
+        const overlap =
+            ballRect.left < btnRect.right &&
+            ballRect.right > btnRect.left &&
+            ballRect.top < btnRect.bottom &&
+            ballRect.bottom > btnRect.top;
+
+        if (overlap) {
+            newActiveId = btn.id;
+            newActiveButton = btn;
+        }
+    });
+
+    if (newActiveId !== currentActiveId) {
+        currentActiveId = newActiveId;
+        if (newActiveButton) {
+            newActiveButton.click();
+        }
+    }
+}
+
+// افزودن لیسنر روی parentBallMove
+parentBallMove.addEventListener('touchmove', handleBallMove);
+parentBallMove.addEventListener('mousemove', handleBallMove);
+parentBallMove.addEventListener('pointermove', handleBallMove);
+
+
+
 //////////////////////////////////////////////////////////////////////////// addEventListener buttons
 
 let goInterValid, speed = 150;
@@ -496,6 +562,9 @@ function lose(n) {
 
         deleteHover();
 
+        parentBallMove.style.left = '50%';
+        parentBallMove.style.top = '50%';
+
     }, 2000);
 }
 
@@ -638,6 +707,9 @@ class PositionColorButtonColor {
             element.style.backgroundColor = this.colorLocal;
         })
         dokme.style.backgroundColor = this.colorLocal;
+        ballBtns.forEach(element => {
+            element.style.backgroundColor = this.colorLocal;
+        })
     }
     show() {
         let color = parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(7) input[type=color]').value;
@@ -648,6 +720,9 @@ class PositionColorButtonColor {
             element.style.backgroundColor = color;
         })
         dokme.style.backgroundColor = color;
+        ballBtns.forEach(element => {
+            element.style.backgroundColor = color;
+        })
         settingsLoc('ButtonColor', color);
     }
 }
@@ -664,6 +739,7 @@ class PositionColorButtonIndicatorColor {
             element.style.color = this.colorLocal;
         })
         document.documentElement.style.setProperty('--backgroundHoverBtn', this.colorLocal);
+        parentBallMove.style.backgroundColor = this.colorLocal;
     }
     show() {
         let color = parentBoxesSettings.querySelector('.boxChooseColor:nth-of-type(8) input[type=color]').value;
@@ -671,6 +747,7 @@ class PositionColorButtonIndicatorColor {
             element.style.color = color;
         })
         document.documentElement.style.setProperty('--backgroundHoverBtn', color);
+        parentBallMove.style.backgroundColor = color
         settingsLoc('ButtonIndicatorColor', color);
     }
 }
@@ -738,35 +815,61 @@ class PositionShapeBtns {
         this.colorLocal = colorLocal;
     }
     sendy() {
-        if (this.colorLocal == 2) {
+        if (this.colorLocal == 1) {
             parentBtn.style.display = 'none';
+            containerBtnBall.style.display = 'none';
             parentBtnHover.style.display = 'grid';
-            selectedShapeBtn[0].classList.add('selectedBtns');
             selectedShapeBtn[1].classList.remove('selectedBtns');
+            selectedShapeBtn[2].classList.remove('selectedBtns');
+            selectedShapeBtn[0].classList.add('selectedBtns');
         }
-        else if (this.colorLocal == 1) {
+        else if (this.colorLocal == 2) {
             parentBtnHover.style.display = 'none';
+            containerBtnBall.style.display = 'none';
             parentBtn.style.display = 'grid';
-            selectedShapeBtn[1].classList.add('selectedBtns');
             selectedShapeBtn[0].classList.remove('selectedBtns');
+            selectedShapeBtn[2].classList.remove('selectedBtns');
+            selectedShapeBtn[1].classList.add('selectedBtns');
+        }
+        else if (this.colorLocal == 3) {
+            parentBtnHover.style.display = 'none';
+            parentBtn.style.display = 'none';
+            containerBtnBall.style.display = 'block';
+            selectedShapeBtn[0].classList.remove('selectedBtns');
+            selectedShapeBtn[1].classList.remove('selectedBtns');
+            selectedShapeBtn[2].classList.add('selectedBtns');
         }
     }
     show(element) {
         if (element.classList.contains('btnSelectCircle')) {
             parentBtn.style.display = 'none';
+            containerBtnBall.style.display = 'none';
             parentBtnHover.style.display = 'grid';
-            selectedShapeBtn[0].classList.add('selectedBtns');
             selectedShapeBtn[1].classList.remove('selectedBtns');
+            selectedShapeBtn[2].classList.remove('selectedBtns');
+            selectedShapeBtn[0].classList.add('selectedBtns');
             deleteHover();
-            settingsLoc('ShapeBtns', 2);
+            settingsLoc('ShapeBtns', 1);
         }
         else if (element.classList.contains('btnSelectButtons')) {
             parentBtnHover.style.display = 'none';
+            containerBtnBall.style.display = 'none';
             parentBtn.style.display = 'grid';
-            selectedShapeBtn[1].classList.add('selectedBtns');
             selectedShapeBtn[0].classList.remove('selectedBtns');
+            selectedShapeBtn[2].classList.remove('selectedBtns');
+            selectedShapeBtn[1].classList.add('selectedBtns');
             deleteHover();
-            settingsLoc('ShapeBtns', 1);
+            settingsLoc('ShapeBtns', 2);
+        }
+        else if (element.classList.contains('btnSelectBall')) {
+            parentBtnHover.style.display = 'none';
+            parentBtn.style.display = 'none';
+            containerBtnBall.style.display = 'block';
+            selectedShapeBtn[0].classList.remove('selectedBtns');
+            selectedShapeBtn[1].classList.remove('selectedBtns');
+            selectedShapeBtn[2].classList.add('selectedBtns');
+            deleteHover();
+            settingsLoc('ShapeBtns', 3);
         }
     }
 }

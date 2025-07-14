@@ -200,24 +200,25 @@ body {
     max-width: 205px;
 }
 
-.chooseBtn{
+.chooseBtn {
     width: 100%;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: stretch;
     justify-content: center;
-    height: 20px;
+    row-gap: 5px;
 }
 
-.btnShapeSelect{
-    flex: 1;
-    height: 100%;
+.btnShapeSelect {
+    height: 20px;
+    width: 100%;
     border: none;
     outline: none;
     cursor: pointer;
     transition: background-color .2s;
 }
 
-.selectedBtns{
+.selectedBtns {
     background-color: #0078d4;
 }
 
@@ -381,6 +382,57 @@ body {
     place-content: center;
 }
 
+.containerBtnBall {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    /* border: 1px solid black; */
+    border-radius: 50%;
+    overflow: hidden;
+
+    /* display: none !important; */
+}
+
+#parentBtnBall {
+    width: 100%;
+    height: 100%;
+    /* border: 1px solid black; */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    transform: rotate(45deg);
+    border-radius: 50%;
+    overflow: hidden;
+    /* display: none; */
+}
+
+.ballBtn {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background-color: #ccc;
+}
+
+.parentBallMove {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #505050;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ballMove {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+}
+
 #parentBtnHover {
     width: 100px;
     height: 100px;
@@ -392,6 +444,16 @@ body {
     overflow: hidden;
     position: relative;
     display: none;
+
+    /* display: none !important; */
+}
+
+.hoverBtn {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background-color: #ccc;
 }
 
 .dokme {
@@ -400,16 +462,8 @@ body {
     top: 50%;
     width: 20px;
     height: 20px;
-    border-radius: 50%;
-    background-color: #ccc;
     transform: translate(-50%, -50%);
-}
-
-.hoverBtn {
-    width: 100%;
-    height: 100%;
-    border: none;
-    outline: none;
+    border-radius: 50%;
     background-color: #ccc;
 }
 
@@ -421,6 +475,8 @@ body {
     width: 80px;
     height: 80px;
     position: relative;
+
+    /* display: none !important; */
 }
 
 .btn {

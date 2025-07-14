@@ -188,12 +188,13 @@
                                 <audio src="./music/song-18.mp3" type="audio/mpeg"></audio>
                             </div>
                         </section>
-                        
+
                         <section class="boxChooseBtn">
                             <label for="">Choose the shape of the buttons:</label>
                             <div class="chooseBtn">
-                                <button type="button" class="btnShapeSelect btnSelectCircle">Circular</button>
-                                <button type="button" class="btnShapeSelect btnSelectButtons selectedBtns">Buttons</button>
+                                <button type="button" class="btnShapeSelect btnSelectCircle">By touching the direction</button>
+                                <button type="button" class="btnShapeSelect btnSelectButtons selectedBtns">with Buttons</button>
+                                <button type="button" class="btnShapeSelect btnSelectBall">with the ball</button>
                             </div>
                         </section>
 
@@ -254,6 +255,17 @@
                     <button type="button" class="hoverBtn" id="leftBtnHover"></button>
                     <button type="button" class="hoverBtn" id="bottomBtnHover"></button>
                     <span class="dokme"></span>
+                </div>
+                <div class="containerBtnBall">
+                    <div id="parentBtnBall">
+                        <button type="button" class="ballBtn" id="topBtnBall" onclick="move(-20)"></button>
+                        <button type="button" class="ballBtn" id="rightBtnBall" onclick="move(1)"></button>
+                        <button type="button" class="ballBtn" id="leftBtnBall" onclick="move(-1)"></button>
+                        <button type="button" class="ballBtn" id="bottomBtnBall" onclick="move(20)"></button>
+                    </div>
+                    <div class="parentBallMove">
+                        <span class="ballMove"></span>
+                    </div>
                 </div>
             </section>
 
