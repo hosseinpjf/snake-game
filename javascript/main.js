@@ -858,7 +858,7 @@ class PositionShapeBtns {
             selectedShapeBtn[0].classList.remove('selectedBtns');
             selectedShapeBtn[2].classList.remove('selectedBtns');
             selectedShapeBtn[1].classList.add('selectedBtns');
-            deleteHover();
+            // deleteHover();
             settingsLoc('ShapeBtns', 2);
         }
         else if (element.classList.contains('btnSelectBall')) {
@@ -868,7 +868,7 @@ class PositionShapeBtns {
             selectedShapeBtn[0].classList.remove('selectedBtns');
             selectedShapeBtn[1].classList.remove('selectedBtns');
             selectedShapeBtn[2].classList.add('selectedBtns');
-            deleteHover();
+            // deleteHover();
             settingsLoc('ShapeBtns', 3);
         }
     }
