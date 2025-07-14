@@ -180,10 +180,6 @@ body {
     display: none;
 }
 
-.boxChooseBoard label {
-    cursor: pointer;
-}
-
 .boxChooseBtn {
     width: 100%;
     padding: 10px;

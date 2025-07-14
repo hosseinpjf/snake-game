@@ -891,52 +891,48 @@ class PositionSnakeSpeed {
 let SnakeSpeedShow = new PositionSnakeSpeed();
 parentBoxesSettings.querySelector('.boxChooseSpeed button').addEventListener('click', SnakeSpeedShow.show.bind(SnakeSpeedShow));
 
-
-const checkboxBorder = Array.from(parentBoxesSettings.querySelectorAll('.boxChooseBoard button, .boxChooseBoard button input'));
+const checkboxBorder = parentBoxesSettings.querySelector('.boxChooseBoard button');
 class PositionColorBorderBoxes {
     constructor(colorLocal) {
         this.colorLocal = colorLocal;
     }
     sendy() {
-        checkboxBorder[1].checked = this.colorLocal;
-        if (this.colorLocal) {
+        if (this.colorLocal == 'Yes') {
             boxes.forEach(element => {
                 element.classList.add('boxBorderClick');
             })
-            checkboxBorder[0].style.backgroundColor = '#0078d4';
-            checkboxBorder[0].textContent = 'No';
+            checkboxBorder.style.backgroundColor = '#0078d4';
+            checkboxBorder.textContent = 'No';
         }
         else {
             boxes.forEach(element => {
                 element.classList.remove('boxBorderClick');
             })
-            checkboxBorder[0].style.backgroundColor = '#f0f0f0';
-            checkboxBorder[0].textContent = 'Yes';
+            checkboxBorder.style.backgroundColor = '#f0f0f0';
+            checkboxBorder.textContent = 'Yes';
         }
     }
     show() {
-        checkboxBorder[1].checked = !checkboxBorder[1].checked;
-        if (checkboxBorder[1].checked) {
+        if (checkboxBorder.textContent == 'Yes') {
+            settingsLoc('BorderBoxes', checkboxBorder.textContent);
             boxes.forEach(element => {
                 element.classList.add('boxBorderClick');
             })
-            checkboxBorder[0].style.backgroundColor = '#0078d4';
-            checkboxBorder[0].textContent = 'No';
+            checkboxBorder.style.backgroundColor = '#0078d4';
+            checkboxBorder.textContent = 'No';
         }
         else {
+            settingsLoc('BorderBoxes', checkboxBorder.textContent);
             boxes.forEach(element => {
                 element.classList.remove('boxBorderClick');
             })
-            checkboxBorder[0].style.backgroundColor = '#f0f0f0';
-            checkboxBorder[0].textContent = 'Yes';
+            checkboxBorder.style.backgroundColor = '#f0f0f0';
+            checkboxBorder.textContent = 'Yes';
         }
-        settingsLoc('BorderBoxes', checkboxBorder[1].checked);
     }
 }
 let BorderBoxesShow = new PositionColorBorderBoxes();
-checkboxBorder.forEach(element => {
-    element.addEventListener('click', BorderBoxesShow.show.bind(BorderBoxesShow));
-});
+checkboxBorder.addEventListener('click', BorderBoxesShow.show.bind(BorderBoxesShow));
 
 
 const closeBox = document.getElementsByClassName('closeBox')[0];
